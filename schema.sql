@@ -6,5 +6,4 @@ CREATE table user(
      datanum int not null primary key,
      day text not null,
      player text not null,
-     
 )
