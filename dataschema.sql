@@ -1,4 +1,5 @@
 CREATE table pitcher_data(
+       id int not null PRIMARY KEY,
        data_id int not null PRIMARY KEY,
        pitcher_name text not null,
        day text not null,
@@ -7,5 +8,5 @@ CREATE table pitcher_data(
        rotations real not null,
        r_efficiency real not null,
        v_change real not null,
-       h_change real not null
+       h_change real not null,
 )
