@@ -1,12 +1,12 @@
 CREATE table user(
-     id int not null primary key,
-     name text not null,
+     id int primary key,
+     username text not null,
      pass_hash text not null,
      teamname text not null
 );
 
 CREATE table pitcher_data(
-       data_id int not null PRIMARY KEY,
+       data_id int primary key,
        pitcher_name text not null,
        day text not null,
        pitch_type text not null,
@@ -17,4 +17,3 @@ CREATE table pitcher_data(
        h_change real not null,
        id int not null
 );
-
