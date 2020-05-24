@@ -1,19 +1,8 @@
-#!/usr/bin/ruby
-require 'cgi'
-require 'cgi/session'
-require './login_cert.rb'
+Status: 302 Found
+Content-Type: text/html
+Set-Cookie: _session_id=38570a6e75fe45c3069efac973a50110; path=
+Location: menu.cgi
 
-cgi = CGI.new
-session = CGI::Session.new(cgi)
-l=Login.new(cgi, session)
-l.login_process()
-m = CGI.escapeHTML(l.message)
-if session["id"]
-  puts cgi.header({'status' => 'REDIRECT',
-                   'Location' => 'menu.cgi'})
-end
-
-puts <<-EOS
 Content-type: text/html
 
 <!DOCTYPE html>
@@ -31,7 +20,7 @@ Content-type: text/html
       <div class="cotainer">
         <div class="row justify-content-center">
             <div class="col-md-8">
-		<p>#{m}</p>
+		<p></p>
                 <div class="card">
                     <div class="card-header">ログイン</div>
                     <div class="card-body">
@@ -71,4 +60,3 @@ Content-type: text/html
   </body>
 </html>
 
-EOS
