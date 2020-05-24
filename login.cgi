@@ -1,7 +1,7 @@
 #!/usr/bin/ruby
 require 'cgi'
 require 'cgi/session'
-require './login_cert.rb'
+require './lib/login_cert.rb'
 
 cgi = CGI.new
 session = CGI::Session.new(cgi)
@@ -13,7 +13,7 @@ if session["id"]
                    'Location' => 'menu.cgi'})
 end
 
-puts <<-EOS
+puts <<-EOS if ! session["id"]
 Content-type: text/html
 
 <!DOCTYPE html>
