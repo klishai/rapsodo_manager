@@ -37,14 +37,14 @@ Content-type: text/html
                     <div class="card-body">
                         <form action="" method="post">
                             <div class="form-group row">
-                                <label for="username" class="col-md-4 col-form-label text-md-right">Username</label>
+                                <label for="username" class="col-md-4 col-form-label text-md-right">Username (英数字3~8文字)</label>
                                 <div class="col-md-6">
                                     <input type="text" id="username" class="form-control" name="username" required autofocus>
                                 </div>
                             </div>
 
                             <div class="form-group row">
-                                <label for="password" class="col-md-4 col-form-label text-md-right">Password</label>
+                                <label for="password" class="col-md-4 col-form-label text-md-right">Password (英数字8文字以上)</label>
                                 <div class="col-md-6">
                                     <input type="password" id="password" class="form-control" name="password" required>
                                 </div>
