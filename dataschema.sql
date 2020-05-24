@@ -12,7 +12,7 @@ CREATE table pitcher_data(
        pitch_type text not null,
        pitch_speed real not null,
        rotations int not null,
-       r_efficiency real not null,
+       r_efficiency int not null,
        v_change real not null,
        h_change real not null,
        id int not null
