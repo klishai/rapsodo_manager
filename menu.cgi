@@ -9,7 +9,7 @@ if ! session["id"]
                    'Location' => 'login.cgi'})
 end
 
-puts <<-EOS
+puts <<-EOS if session["id"]
 Content-type: text/html
 
 <!DOCTYPE html>

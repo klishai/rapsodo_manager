@@ -4,10 +4,7 @@ require "cgi/session"
 
 cgi = CGI.new
 session = CGI::Session.new(cgi)
-if ! session["id"]
-  # セッション破棄してログイン画面へ
-  session.delete
-end
+session.delete
 
 puts cgi.header({'status' => 'REDIRECT',
-                 'Location' => 'login.cgi'}
+                 'Location' => 'login.cgi'})

@@ -1,7 +1,7 @@
 #!/usr/bin/ruby
 require 'cgi'
 require 'cgi/session'
-require "./register_cert.rb"
+require "./lib/register_cert.rb"
 
 cgi=CGI.new
 r = Register.new(cgi)
@@ -13,7 +13,7 @@ end
 
 m = CGI.escapeHTML(r.message)
 
-puts <<-EOS
+puts <<-EOS if ! r.register?
 Content-type: text/html
 
 <!DOCTYPE html>

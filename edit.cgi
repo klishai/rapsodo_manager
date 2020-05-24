@@ -1,7 +1,7 @@
 #!/usr/bin/ruby
 require 'cgi'
 require 'cgi/session'
-require "./Edit.rb"
+require "./lib/Edit.rb"
 
 cgi = CGI.new
 session = CGI::Session.new(cgi)
@@ -11,7 +11,7 @@ if ! session["id"]
                    'Location' => 'login.cgi'})
 end
 
-puts <<-EOS
+puts <<-EOS if session["id"]
 Content-type: text/html
 
 <!DOCTYPE html>
