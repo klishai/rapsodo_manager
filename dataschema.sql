@@ -1,7 +1,7 @@
 CREATE table user(
      id int primary key,
      username text not null,
-     pass_hash text not null,
+     password text not null,
      teamname text not null
 );
 
