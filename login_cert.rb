@@ -43,40 +43,6 @@ class Login
     end
   end
 
-  # ログイン済みか判断する
-  def get_existing_session(cgi)
-    begin
-      session = CGI::Session.new( cgi, {"new_session"=>false,
-                                        "tmpdir"=>"tmp/." } )
-    rescue ArgumentError
-      session = nil
-    end
-    return( session )
-  end
-
-  # ログアウト処理
-  def logout_process()
-    return if( is_session_auth() == false )
-
-    @session.delete
-
-    # ログアウト完了画面
-    login = STW::Login.new( PATH_PASSWD )
-    @contents = login.prompt( LOGIN_TEMPLETE )
-    put_browser_info()
-  end
-
-  def is_session_auth()
-    # 編集権限の確認
-    if( @session == nil )
-      @contents << "<h1>ERROR</h1>"
-      @contents << "<p>Invalid Session.</p>"
-      @contents << "<p>Session is not enable.</p>"
-      return( false )
-    end
-    return( true )
-  end
-
   # 入力されたパスワードと名前のバリデーション
   def check_id_pass(name, pass)
     # 英数字3~8文字
@@ -85,8 +51,12 @@ class Login
     elsif name !~ /\A[0-9a-zA-Z]{3,8}\z/i 
       @message = "名前は英数字3~8文字です."
       return false
-    elsif pass !~ /\A[a-z\d]{8,100}\z/i
-      @message = "パスワードは英数字8文字以上です."
+    elsif pass !~ /^(?=.*?[a-z])(?=.*?\d)
+                    (?=.*[?!#$%&'()*+-.
+                     \/:;<=>?@[\\]^_`{|}~])
+                    [a-z\d!#$%&'()*+-.
+                     \/:;<=>?@[\\]^_`{|}~]{8,16}$/ix
+      @message = "パスワードは英数記号8~16文字です."
       return false
     end
     return true

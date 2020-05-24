@@ -36,8 +36,12 @@ class Register
     elsif name !~ /\A[0-9a-zA-Z]{3,8}\z/i
       @message = "名前は英数字3~8文字です."
       return false
-    elsif pass !~ /\A[a-z\d]{8,100}\z/i
-      @message = "パスワードは英数字8文字以上です."
+    elsif pass !~ /^(?=.*?[a-z])(?=.*?\d)
+                    (?=.*[?!#$%&'()*+-.
+                     \/:;<=>?@[\\]^_`{|}~])
+                    [a-z\d!#$%&'()*+-.
+                     \/:;<=>?@[\\]^_`{|}~]{8,16}$/ix
+      @message = "パスワードは英数記号8~16文字です."
       return false
     elsif team == ""
       @message = "チーム名は1文字以上です."
@@ -50,7 +54,7 @@ class Register
     # ログイン情報のチェック
     data = []
     name = CGI.escapeHTML(name)
-    sql = "select id, username from user where user.username = '#{name}';"
+    sql = "select username from user where user.username = '#{name}';"
     @db.execute(sql).each{|row|
       data << row
     }
@@ -58,7 +62,12 @@ class Register
       @message = "名前が登録されています."
       return false
     else
-      @pre_id = data[0][0]
+      sql = "select id from user;"
+      data = []
+      @db.execute(sql).each{|row|
+        data << row[0]
+      }
+      @pre_id = data[-1]
       return true
     end
   end
@@ -68,7 +77,7 @@ class Register
     name = CGI.escapeHTML(name)
     pass = CGI.escapeHTML(pass)
     team = CGI.escapeHTML(team)
-    sql = "insert into user values(#{pre_id}, '#{name}', '#{pass}', '#{team}');"
+    sql = "insert into user values(#{@pre_id+1}, '#{name}', '#{pass}', '#{team}');"
     @db.execute(sql).each{|row|
       data << row
     }
