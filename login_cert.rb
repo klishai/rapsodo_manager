@@ -1,5 +1,3 @@
-#!/usr/bin/ruby
-
 require "cgi"
 require "cgi/session"
 require "sqlite3"
@@ -8,12 +6,14 @@ require "sqlite3"
 # http://capm-network.com/?tag=Ruby-CGI%E3%82%BB%E3%83%83%E3%82%B7%E3%83%A7%E3%83%B3
 
 # ログイン処理
-class login_cert
+class Login
 
 # イニシャライザ
-def initialize(cgi)
+def initialize(cgi, session)
   @cgi = cgi
-  @session = CGI::Session.new(cgi)
+  @session = session
+  @db = SQLite3::Database.new("./data.db")
+  @message = ""
 end
 
 def login_process()
@@ -77,11 +77,10 @@ end
 
 def check_auth(name, pass)
   data = []
-  db.execute(sql).each{|row|
+  db.execute().each{|row|
     data<<row[0]
   }
 
 
 end
-
-def register
+end
