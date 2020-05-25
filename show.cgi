@@ -16,6 +16,15 @@ Content-type: text/html
   <meta charset="utf-8">
 </head>
 <body>
+<p>ようこそ！検索ワードを入力してください。</p>
+<p>#{CGI.escapeHTML(cgi["key"])}</p>                         
+<p>#{l.confirm_get_param}</p>
+
+<form method="GET" action="">
+キーワード: <input type="text" name="key" size="50"><br>
+<input type="submit" value="送信">
+<input type="reset" value="リセット">
+</form>
 EOS
 l.show_table
 puts <<-EOS

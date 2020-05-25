@@ -11,14 +11,19 @@ class Show
     @session = session
     @id = session["id"]
     @db = SQLite3::Database.new("./data.db")
+    @key = cgi["key"] 
   end
 
   def show_table
+    
     data = []
-    sql = "select * from pitcher_data where pitcher_data.id = #{@id};"
+    sql = "select * from pitcher_data where pitcher_data.id= #{@id};"
+    sql = "select * from pitcher_data where pitcher_data.pitcher_name= #{@key};"
+        
     @db.execute(sql).each{|row|
       data<<row[0,row.size-1]
     }
+
     puts <<-EOS
     <table border="1">
       <tr>
@@ -42,4 +47,11 @@ class Show
     }
     puts "</table>" 
   end
+
+  def confirm_get_param
+    @cgi.instance_variable_get(:@params)
+  end
+
+  
+
 end
