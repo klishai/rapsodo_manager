@@ -3,17 +3,19 @@ require 'cgi'
 require 'cgi/session'
 require "./lib/register_cert.rb"
 
-cgi=CGI.new
+cgi = CGI.new
 r = Register.new(cgi)
 
-if r.register?
+f = r.register?
+
+if f
   puts cgi.header({'status' => 'REDIRECT',
                    'Location' => 'login.cgi'})
 end
 
 m = CGI.escapeHTML(r.message)
 
-puts <<-EOS if ! r.register?
+puts <<-EOS if ! f
 Content-type: text/html
 
 <!DOCTYPE html>

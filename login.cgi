@@ -5,7 +5,7 @@ require './lib/login_cert.rb'
 
 cgi = CGI.new
 session = CGI::Session.new(cgi)
-l=Login.new(cgi, session)
+l = Login.new(cgi, session)
 l.login_process()
 m = CGI.escapeHTML(l.message)
 if session["id"]
