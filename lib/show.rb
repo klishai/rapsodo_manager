@@ -11,15 +11,19 @@ class Show
     @session = session
     @id = session["id"]
     @db = SQLite3::Database.new("./data.db")
-    @key = cgi["key"] 
-  end
+    @cgi_p = @cgi.instance_variable_get(:@params).map{|a,b|[a, CGI.escapeHTML(b)]}.to_h
+    end
 
   def show_table
     
     data = []
-    sql = "select * from pitcher_data where pitcher_data.id= #{@id};"
-    sql = "select * from pitcher_data where pitcher_data.pitcher_name= #{@key};"
-        
+    sql = "select * from pitcher_data where pitcher_data.id = #{@id}"
+
+    unless @cgi_p["key"] == ""
+    sql = "select * from pitcher_data where id = #{@id} and pitcher_name = '#{@cgi_p["key"]}' "
+    end
+    p @cgi_p["key"]
+
     @db.execute(sql).each{|row|
       data<<row[0,row.size-1]
     }
