@@ -11,17 +11,25 @@ class Show
     @session = session
     @id = session["id"]
     @db = SQLite3::Database.new("./data.db")
-    @data =[]
-    lookup
+    @data = lookup
+    @cgi_p = @cgi.instance_variable_get(:@params).map{|a,b|[a, CGI.escapeHTML(b.to_s)]}.to_h
   end
+  
+  def confirm_get_param
+    @cgi_p
+  end
+
   def lookup
-    sql = "select * from pitcher_data where pitcher_data.id = #{@id};"
+    data = []
+    sql = "select * from pitcher_data where pitcher_data.id = #{@id} "
+    sql += "and pitcher_data.pitcher_name = '#{@cgi_p["key"]}'" unless @cgi_p["key"].empty?
+    sql += ?;
     @db.execute(sql).each{|row|
-      @data<<row[0,row.size-1]
+      data << row[0,row.size-1]
     }
+    return data
   end
-
-
+  
   def show_table
     puts <<-EOS
     <table border="1">
