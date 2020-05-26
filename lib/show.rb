@@ -29,7 +29,7 @@ class Show
     }
     return data
   end
-
+  
   def show_table
     puts <<-EOS
     <table border="1">
@@ -54,7 +54,4 @@ class Show
     }
     puts "</table>" 
   end
-end
-  
-
 end
