@@ -11,14 +11,18 @@ class Show
     @session = session
     @id = session["id"]
     @db = SQLite3::Database.new("./data.db")
+    @data =[]
+    lookup
   end
-
-  def show_table
-    data = []
+  def lookup
     sql = "select * from pitcher_data where pitcher_data.id = #{@id};"
     @db.execute(sql).each{|row|
-      data<<row[0,row.size-1]
+      @data<<row[0,row.size-1]
     }
+  end
+
+
+  def show_table
     puts <<-EOS
     <table border="1">
       <tr>
@@ -33,7 +37,7 @@ class Show
         <th>横の変化量(cm)</th>
       </tr>
     EOS
-    data.each{|r|
+    @data.each{|r|
       puts "<tr>"
       r.each{|d|
         puts "<td>" + CGI.escapeHTML(d.to_s) + "</td>"
