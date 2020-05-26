@@ -1,10 +1,21 @@
 #!/usr/bin/ruby
 require 'cgi'
 require 'cgi/session'
+require "./lib/register_cert.rb"
 
+cgi = CGI.new
+r = Register.new(cgi)
 
+f = r.register?
 
-puts <<-EOS
+if f
+  puts cgi.header({'status' => 'REDIRECT',
+                   'Location' => 'login.cgi'})
+end
+
+m = CGI.escapeHTML(r.message)
+
+puts <<-EOS if ! f
 Content-type: text/html
 
 <!DOCTYPE html>
@@ -22,26 +33,27 @@ Content-type: text/html
       <div class="cotainer">
         <div class="row justify-content-center">
             <div class="col-md-8">
+                <p>#{m}</p>
                 <div class="card">
                     <div class="card-header">新規作成</div>
                     <div class="card-body">
                         <form action="" method="post">
                             <div class="form-group row">
-                                <label for="username" class="col-md-4 col-form-label text-md-right">Username</label>
+                                <label for="username" class="col-md-4 col-form-label text-md-right">Username (英数字3~8文字)</label>
                                 <div class="col-md-6">
                                     <input type="text" id="username" class="form-control" name="username" required autofocus>
                                 </div>
                             </div>
 
                             <div class="form-group row">
-                                <label for="team" class="col-md-4 col-form-label text-md-right">Teamname</label>
+                                <label for="team" class="col-md-4 col-form-label text-md-right">Teamname (1文字以上)</label>
                                 <div class="col-md-6">
                                     <input type="text" id="teamname" class="form-control" name="teamname" required>
                                 </div>
                             </div>
 
                             <div class="form-group row">
-                                <label for="password" class="col-md-4 col-form-label text-md-right">Password</label>
+                                <label for="password" class="col-md-4 col-form-label text-md-right">Password (英数記号全て含む8~16文字)</label>
                                 <div class="col-md-6">
                                     <input type="password" id="password" class="form-control" name="password" required>
                                 </div>
