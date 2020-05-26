@@ -66,7 +66,7 @@ class Login
   def check_auth(name, pass)
     data = []
     name = CGI.escapeHTML(name)
-    sql = "select id,pass_hash from user where user.username = '#{name}';"
+    sql = "select id,password from user where user.username = '#{name}';"
     @db.execute(sql).each{|row|
       data << row
     }
