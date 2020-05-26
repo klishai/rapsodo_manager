@@ -14,6 +14,10 @@ class Show
     @data = lookup
     @cgi_p = @cgi.instance_variable_get(:@params).map{|a,b|[a, CGI.escapeHTML(b.to_s)]}.to_h
   end
+  
+  def confirm_get_param
+    @cgi_p
+  end
 
   def lookup
     data = []
