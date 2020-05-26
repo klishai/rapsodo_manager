@@ -17,7 +17,7 @@ Content-type: text/html
 </head>
 <body>
 <p>ようこそ！検索ワードを入力してください。</p>
-<p>#{CGI.escapeHTML(cgi["key"])}</p>                         
+<p>#{l.confirm_get_param["key"]}</p>                         
 <p>#{l.confirm_get_param}</p>
  
 <form method="GET" action="">
