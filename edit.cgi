@@ -1,7 +1,7 @@
 #!/usr/bin/ruby
 require 'cgi'
 require 'cgi/session'
-require "./lib/Edit.rb"
+require "./lib/edit.rb"
 
 cgi = CGI.new
 session = CGI::Session.new(cgi)
