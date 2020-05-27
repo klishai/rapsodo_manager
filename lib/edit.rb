@@ -9,7 +9,7 @@ class Edit
     @cgi = cgi
     @session = session
     @id = @session["id"]
-    @db = SQLite3::Database.new("./data.db")
+    @db = SQLite3::Database.new("./data/data.db")
   end
 
   def id

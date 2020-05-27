@@ -7,7 +7,7 @@ require 'sqlite3'
 class Register
   def initialize(cgi)
     @cgi = cgi
-    @db = SQLite3::Database.new("./data.db")
+    @db = SQLite3::Database.new("./data/data.db")
     @message = ""
     @pre_id = ""
   end
