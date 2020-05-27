@@ -9,8 +9,18 @@ r = Register.new(cgi)
 f = r.register?
 
 if f
-  puts cgi.header({'status' => 'REDIRECT',
-                   'Location' => 'login.cgi'})
+  puts <<-EOS
+  Content-type: text/html
+
+
+  <!DOCTYPE html>
+  <html>
+    <head>
+      <meta charset="utf-8" />
+      <meta http-equiv="refresh"content="0;URL=160.16.75.206/rapsodo_manager/~eggplants/login.cgi">
+    </head>
+  </html>
+  EOS
 end
 
 m = CGI.escapeHTML(r.message)
