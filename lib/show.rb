@@ -10,7 +10,7 @@ class Show
     @cgi = cgi
     @session = session
     @id = session["id"]
-    @db = SQLite3::Database.new("./data.db")
+    @db = SQLite3::Database.new("./data/data.db")
     @data = lookup
     @cgi_p = @cgi.instance_variable_get(:@params).map{|a,b|[a, CGI.escapeHTML(b.to_s)]}.to_h
   end
