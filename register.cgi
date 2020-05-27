@@ -10,7 +10,7 @@ f = r.register?
 
 if f
   puts cgi.header({'status' => 'REDIRECT',
-                   'Location' => 'login.cgi'})
+                 'Location' => 'login.cgi'})
 end
 
 m = CGI.escapeHTML(r.message)

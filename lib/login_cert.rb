@@ -12,7 +12,7 @@ class Login
   def initialize(cgi, session)
     @cgi = cgi
     @session = session
-    @db = SQLite3::Database.new("./data.db")
+    @db = SQLite3::Database.new("./data/data.db")
     @id= ""
     @message = ""
   end
