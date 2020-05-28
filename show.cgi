@@ -26,7 +26,9 @@ Content-type: text/html
 <input type="reset" value="リセット">
 </form>
 EOS
+l.lookup
 l.show_table
+
 puts <<-EOS
 </body>
 </html>
