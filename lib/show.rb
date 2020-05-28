@@ -21,9 +21,9 @@ class Show
 
   def lookup
     data = []
-    sql = "select * from pitcher_data where pitcher_data.id = #{@id} "
+    sql = "select * from pitcher_data where pitcher_data.id = #{@id}"
     sql += "and pitcher_data.pitcher_name = '#{@cgi_p["key"]}'" unless @cgi_p["key"].empty?
-    sql += ?;
+    sql += ";"
     @db.execute(sql).each{|row|
       data << row[0,row.size-1]
     }
