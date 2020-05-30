@@ -1,4 +1,5 @@
 #!/usr/bin/ruby
+#encoding:UTF-8
 require 'cgi'
 require 'cgi/session'
 require './lib/show.rb'
@@ -13,19 +14,13 @@ Content-type: text/html
 <!DOCTYPE HTML>
 <html lang="ja">
 <head>
-  <meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 </head>
 <body>
-<p>ようこそ！検索ワードを入力してください。</p>
-<p>#{l.confirm_get_param["key"]}</p>                         
-<p>#{l.confirm_get_param}</p>
- 
-<form method="GET" action="">
-キーワード: <input type="text" name="key" size="50"><br>
-<input type="submit" value="送信">
-<input type="reset" value="リセット">
-</form>
+<p>データ表示</p>
 EOS
+l.searchform
+l.lookup
 l.show_table
 puts <<-EOS
 </body>
