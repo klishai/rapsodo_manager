@@ -19,8 +19,14 @@ Content-type: text/html
 <body>
 <p>データ表示</p>
 EOS
+
 l.searchform
 l.lookup
+puts <<-EOS
+<div class="center">
+#{l.create_paging_link}
+</div>
+EOS
 l.show_table
 puts <<-EOS
 </body>
