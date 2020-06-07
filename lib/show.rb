@@ -14,6 +14,7 @@ class Show
     @db = SQLite3::Database.new("./data/data.db")
     @cgi_p = @cgi.instance_variable_get(:@params).map{|a,b|[a, CGI.escapeHTML(b.to_s)]}.to_h
     @data = lookup
+    
   end
   
   def confirm_get_param
@@ -61,6 +62,7 @@ class Show
      <p>
      <input type="date" name="day1"> ～　<input type ="date" name ="day2" >
      </p>
+
      <p>
      <input type="submit" value="送信"></p>
      </p>
@@ -97,7 +99,8 @@ class Show
      puts
      puts <<-EOS
      
-    <table border="1">
+    <table id ="showtable">
+      <thead>
       <tr>
         <th>data_id</th>
         <th>名前</th>
@@ -109,7 +112,9 @@ class Show
         <th>縦の変化量(cm)</th>
         <th>横の変化量(cm)</th>
       </tr>
+      </thead>
     EOS
+    puts"<tbody>"
     @data.each{|r|
       puts "<tr>"
       r.each{|d|
@@ -117,7 +122,7 @@ class Show
       }
       puts "</tr>"
     }
+    puts "</thead>"
     puts "</table>"    
-    puts(day1)
    end
 end
