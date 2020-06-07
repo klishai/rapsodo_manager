@@ -64,18 +64,6 @@ class Show
      </p>
 
      <p>
-     <input type="text" name="ps" value="" list="case-numbers2" placeholder="1ページの表示件数:">
-       <datalist id="case-numbers2">
-         <option value="20">けっこう少ない</option>
-         <option value="50">少ない</option>
-         <option value="100">ちょっと少ない</option>
-         <option value="200">ちょうどいい</option>
-         <option value="500">ちょっと多い</option>
-       </datalist>
-     </p>
-     <input type="hidden" name="p" value="0">
-
-     <p>
      <input type="submit" value="送信"></p>
      </p>
 
@@ -106,36 +94,13 @@ class Show
     }
     return data
   end
-
-  def create_paging_link
-    @cgi["ps"]=["20"] if @cgi["ps"]==[""]
-    @cgi["ps"]=["20"] if @cgi["ps"][0]=~/[^0-9]/
-    # par["ps"]||=["20"]
-    # par["ps"]=["20"] if par["ps"][0].to_i<0
-    p_now,p_size,hits=@cgi["p"][0].to_i,@cgi["ps"][0].to_i,@data.size
-    begin
-    hmp=hits%p_size!=0&&hits!=0? (hits/p_size)+1 : hits/p_size
-    rescue ZeroDivisionError
-      hmp=0
-    end
-    pagelinks="<table><tr>\n"
-    hmp.times{|i|
-        link="http://160.16.75.206/~irizon/rapsodo_manager/show.cgi?"
-      @cgi["p"]= i
-      @cgi.each{|k,v|link+="#{k}=#{v[0]}&"}
-      pagelinks+="<td><a href=\"#{link.chop}\"><b>#{i+1}</b></a></td>\n"
-      pagelinks+="</tr>\n<tr>" if i%30==0&&i!=0
-    }
-    pagelinks+="</tr></table>\n"
-    return pagelinks
-  end
-
   
   def show_table
      puts
      puts <<-EOS
      
-    <table border="1">
+    <table id ="showtable">
+      <thead>
       <tr>
         <th>data_id</th>
         <th>名前</th>
@@ -147,7 +112,9 @@ class Show
         <th>縦の変化量(cm)</th>
         <th>横の変化量(cm)</th>
       </tr>
+      </thead>
     EOS
+    puts"<tbody>"
     @data.each{|r|
       puts "<tr>"
       r.each{|d|
@@ -155,6 +122,7 @@ class Show
       }
       puts "</tr>"
     }
+    puts "</thead>"
     puts "</table>"    
    end
 end
