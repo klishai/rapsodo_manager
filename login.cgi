@@ -25,49 +25,43 @@ Content-type: text/html
     <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
     <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    
+  <link rel="stylesheet" href="css/login.css">
+  <link rel="icon" href="img/favicon.ico">
   </head>
   <body>
+    <header>
+     <div class="row">
+      <div class="col-sm-8 col-sm-offset-2 text-center">
+       <img src ="img/logo.png">
+      </div>
+    </header>
+
     <main class="login-form">
-      <div class="cotainer">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-		<p>#{m}</p>
-                <div class="card">
-                    <div class="card-header">ログイン</div>
-                    <div class="card-body">
-                        <form action="" method="post">
-                            <div class="form-group row">
-                                <label for="username" class="col-md-4 col-form-label text-md-right">Username (英数字3~8文字)</label>
-                                <div class="col-md-6">
-                                    <input type="text" id="username" class="form-control" name="username" required autofocus>
-                                </div>
-                            </div>
+      <div class="container">
+        <form action=""  method="post" class="row" >
+           <div class="col-sm-8 col-sm-offset-2">
+             <p>#{m}</p>
+             <div class="form-group">
+               <label for="username"id="a1" >Username (英数字3~8文字) <span class="label label-danger">必須</span></label>
+                 <input type="text" id="username" class="form-control" name="username" required autofocus>             
+               <label for="password"id="a2" >Password (英数記号全て含む8~16文字) <span class="label label-danger">必須</span></label>
+                 <input type="password" id="password" class="form-control" name="password" required>
+             </div>             
+                        
 
-                            <div class="form-group row">
-                                <label for="password" class="col-md-4 col-form-label text-md-right">Password (英数記号全て含む8~16文字)</label>
-                                <div class="col-md-6">
-                                    <input type="password" id="password" class="form-control" name="password" required>
-                                </div>
-                            </div>
-
-                            
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    ログイン
-                                </button>
-                                <a href="register.cgi" class="btn btn-link">
-                                    新規登録
-                                </a>
-                            </div>
-                    </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-    </div>
-
-</main>
+                     
+              <button type="submit" class="btn btn-primary"> ログイン </button> 	
+	     <button type="button" class="btn btn-link"> <a href="register.cgi"> 新規登録 </a></buttom>
+         
+          </div>
+        </form>
+       </div>
+     </main>
+      
+   <footer>
+     <p class="text-center"><a href="index.html">ホームへ戻る</p>
+   </footer>
   </body>
 </html>
 
