@@ -41,6 +41,7 @@ Content-type: text/html
       <div class="container">
         <form action=""  method="post" class="row" >
            <div class="col-sm-8 col-sm-offset-2">
+             <p class="new text-center">ログイン</p>
              <p>#{m}</p>
              <div class="form-group">
                <label for="username"id="a1" >Username (英数字3~8文字) <span class="label label-danger">必須</span></label>
