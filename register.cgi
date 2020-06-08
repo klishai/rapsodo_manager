@@ -25,58 +25,48 @@ Content-type: text/html
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>新規作成 | Rapsodo Manager</title>
     <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-    <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
     <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <link rel="stylesheet" href="css/register.css">
+    <link rel="icon" href="img/favicon.ico">
   </head>
+ 
   <body>
-    <main class="login-form">
-      <div class="cotainer">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                <p>#{m}</p>
-                <div class="card">
-                    <div class="card-header">新規作成</div>
-                    <div class="card-body">
-                        <form action="" method="post">
-                            <div class="form-group row">
-                                <label for="username" class="col-md-4 col-form-label text-md-right">Username (英数字3~8文字)</label>
-                                <div class="col-md-6">
-                                    <input type="text" id="username" class="form-control" name="username" required autofocus>
-                                </div>
-                            </div>
-
-                            <div class="form-group row">
-                                <label for="team" class="col-md-4 col-form-label text-md-right">Teamname (1文字以上)</label>
-                                <div class="col-md-6">
-                                    <input type="text" id="teamname" class="form-control" name="teamname" required>
-                                </div>
-                            </div>
-
-                            <div class="form-group row">
-                                <label for="password" class="col-md-4 col-form-label text-md-right">Password (英数記号全て含む8~16文字)</label>
-                                <div class="col-md-6">
-                                    <input type="password" id="password" class="form-control" name="password" required>
-                                </div>
-                            </div>
-                            
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    新規登録
-                                </button>
-                                <a href="login.cgi" class="btn btn-link">
-                                    ログイン
-                                </a>
-                            </div>
-                    </div>
-                    </form>
-                </div>
-            </div>
+   <header>
+    <div class="row">
+      <div class="col-sm-8 col-sm-offset-2 text-center">
+       <img src ="img/logo.png">
+     </div>
+    </header>
+     
+     <main class="register-form">
+       <div class="container">
+        <form action="" method="post" class="row">
+          <div class="col-sm-8 col-sm-offset-2">
+　　　　　 <p class="new text-center">新規登録</p>             
+         　 <p>#{m}</p>
+            <div class="form-group">
+              <label for="username id="a1">Username (英数字3~8文字) <span class="label label-danger">必須</span></label>
+                <input type="text" id="username" class="form-control" name="username" required autofocus>          
+              <label for="team" id="a2">Teamname (1文字以上) <span class="label label-danger">必須</span></label>
+                <input type="text" id="teamname" class="form-control" name="teamname" required>
+              <label for="password" id="a3">Password (英数記号全て含む8~16文字) <span class="label label-danger">必須</span></label>
+                <input type="password" id="password" class="form-control" name="password" required>
+             </div>                                
+               
+              <div class="text-center">    
+                <button type="submit" class="btn btn-primary text-center">新規登録 </button>
+              </div>        
+          </div>
+        </form>
         </div>
-    </div>
-    </div>
-
-</main>
-  </body>
+       
+          <footer class="text-center">
+          　<p><a href="login.cgi" class="btn btn-link">ログインへ戻る</a>
+               <a href="index.html" class="btn btn-link">ホームへ戻る</a></p>
+          </footer>
+                     
+  </main>
+ </body>
 </html>
 
 EOS
