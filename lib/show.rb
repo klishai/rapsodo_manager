@@ -70,6 +70,8 @@ class Show
      </form>
      </details>
      EOS
+     puts
+     puts
    end
 
   def lookup
@@ -90,7 +92,7 @@ class Show
  
     sql += ";"
     @db.execute(sql).each{|row|
-      data << row[0,row.size-1]
+      data << row[1,row.size-2]
     }
     return data
   end
@@ -102,7 +104,6 @@ class Show
     <table id ="showtable">
       <thead>
       <tr>
-        <th>data_id</th>
         <th>名前</th>
         <th>日付</th>
         <th>球種</th>
@@ -122,7 +123,10 @@ class Show
       }
       puts "</tr>"
     }
-    puts "</thead>"
+    puts "</tbody>"
     puts "</table>"    
    end
+
+   
+
 end
