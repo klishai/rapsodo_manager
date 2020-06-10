@@ -15,6 +15,7 @@ class Login
     @db = SQLite3::Database.new("./data/data.db")
     @id= ""
     @message = ""
+    @tname = ""
   end
 
   def message
@@ -38,6 +39,7 @@ class Login
     else
       @session['username'] = login_id
       @session['id'] = @id
+      @session['tname'] = @tname
       @session.close
       return true
     end
@@ -66,7 +68,7 @@ class Login
   def check_auth(name, pass)
     data = []
     name = CGI.escapeHTML(name)
-    sql = "select id,password from user where user.username = '#{name}';"
+    sql = "select id,password,teamname from user where user.username = '#{name}';"
     @db.execute(sql).each{|row|
       data << row
     }
@@ -78,6 +80,7 @@ class Login
       return false
     else
       @id = data[0][0]
+      @tname = data[0][2]
       return true
     end
   end
