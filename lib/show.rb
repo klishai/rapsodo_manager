@@ -76,10 +76,11 @@ class Show
 
   def lookup
     data = []
-    sql = "select * from pitcher_data where pitcher_data.id = #{@id}"
+    # teams
+    sql = "select * from pitcher_data where pitcher_data.id in " +
+          "(select id from user where teamname == '#{@session["tname"]}')"
     sql += " and pitcher_data.pitcher_name = '#{@cgi["team_pitcher"]}'" unless @cgi["team_pitcher"].nil? || @cgi["team_pitcher"].empty?
     sql += " and pitcher_data.pitch_type = '#{@cgi["pitch_type"]}'" unless @cgi["pitch_type"].nil? || @cgi["pitch_type"].empty?
-
     unless @cgi["day1"].nil? || @cgi["day1"].empty? 
     day1 = @cgi["day1"].delete!("-").to_i
     sql += " and pitcher_data.day >= #{day1} "
@@ -103,7 +104,7 @@ class Show
      cond << "球種名:" +  @cgi['pitch_type'] unless @cgi['pitch_type'].empty?
      cond << "From:" +  @cgi['day1'] unless @cgi['day1'].empty?
      cond << "Till:" +  @cgi['day2'] unless @cgi['day2'].empty?
-     puts "<h2>「#{cond.join(?, + ?\s)}」の検索結果: #{@data.size}件HIT</h2>"
+     puts "<h2>「#{cond.empty? ? "(条件なし)" : cond.join(?, + ?\s)}」の検索結果: #{@data.size}件HIT</h2>"
      if @data.size != 0
      unless @cgi["team_pitcher"].empty? || @cgi["pitch_type"].empty?
        puts '<section><div class="highchart-container"></div></section>' 
@@ -141,7 +142,5 @@ class Show
     puts "</table></section>"
    end
    end
-
-   
 
 end
