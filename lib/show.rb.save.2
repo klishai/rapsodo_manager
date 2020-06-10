@@ -11,12 +11,12 @@ class Show
     @cgi = cgi
     @session = session
     @id = session["id"]
-    @tname = session["tname"]
     @db = SQLite3::Database.new("./data/data.db")
     @cgi_p = @cgi.instance_variable_get(:@params).map{|a,b|[a, CGI.escapeHTML(b.to_s)]}.to_h
-    @data = lookup    
+    @data = lookup
+    
   end
-
+  
   def confirm_get_param
     @cgi_p
   end
@@ -32,7 +32,7 @@ class Show
      <summary>検索フォーム</summary>
      <form method="get" action="">
      <p>
-     選手名検索 <span class="message">(※グラフ)</span>
+     選手名検索
      <select name="team_pitcher">
      <option value = ""> -- </opition>
      EOS
@@ -44,7 +44,7 @@ class Show
      </select>
      </p>                                                                                                                                                                                    
      <p>
-     球種検索<span class="message">(※グラフ)</span>     
+     球種検索
      <select name ="pitch_type">
      <option value = ""> -- </opition>
      EOS
@@ -98,48 +98,34 @@ class Show
   end
   
   def show_table
-     cond = []
-     cond << "選手名:" +  @cgi['team_pitcher'] unless @cgi['team_pitcher'].empty?
-     cond << "球種名:" +  @cgi['pitch_type'] unless @cgi['pitch_type'].empty?
-     cond << "From:" +  @cgi['day1'] unless @cgi['day1'].empty?
-     cond << "Till:" +  @cgi['day2'] unless @cgi['day2'].empty?
-     puts "<h2>「#{cond.join(?, + ?\s)}」の検索結果: #{@data.size}件HIT</h2>"
-     if @data.size != 0
-     unless @cgi["team_pitcher"].empty? || @cgi["pitch_type"].empty?
-       puts '<section><div class="highchart-container"></div></section>' 
-     end
+     puts
      puts <<-EOS
-    <section> 
+     
     <table id="showtable" class="highchart"
-           graph-container-before="1"
-           data-graph-container=".highchart-container"
-           data-graph-type="line"
-    >
+           data-graph-container-before="1" data-graph-type="column">
       <thead>
       <tr>
+        <th>名前</th>
         <th>日付</th>
-        <th data-graph-skip="1">名前</th>
-        <th data-graph-skip="1">球種</th>
+        <th>球種</th>
         <th>球速</th>
-        <th data-graph-hidden="1">回転数</th>
-        <th data-graph-hidden="1">回転効率(%)</th>
-        <th data-graph-hidden="1">縦の変化量(cm)</th>
-        <th data-graph-hidden="1">横の変化量(cm)</th>
+        <th>回転数</th>
+        <th>回転効率(%)</th>
+        <th>縦の変化量(cm)</th>
+        <th>横の変化量(cm)</th>
       </tr>
       </thead>
     EOS
     puts"<tbody>"
     @data.each{|r|
       puts "<tr>"
-      r[0], r[1] = r[1], r[0]
       r.each{|d|
         puts "<td>" + CGI.escapeHTML(d.to_s) + "</td>"
       }
       puts "</tr>"
     }
     puts "</tbody>"
-    puts "</table></section>"
-   end
+    puts "</table>"    
    end
 
    
