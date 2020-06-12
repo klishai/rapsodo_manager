@@ -1,18 +1,16 @@
 td {
   border: 1px solid black;
-  text-align: right;
-  vertical-align: top
 }
 
 table {
   border: thick solid black;
-  width: 40%;
+  width: 100%;
 }
 
 #testTable {
-  width: 60px;
-  margin-right: auto;
+  width: 350px;
   margin-left: auto;
+  margin-right: auto;
 }
 
 #tablePagination {
@@ -23,7 +21,6 @@ table {
 }
 
 #tablePagination_paginater {
-  width: 68%;  
   margin-left: auto;
   margin-right: auto;
 }
