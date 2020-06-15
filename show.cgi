@@ -35,6 +35,11 @@ Content-type: text/html
 <h1>データ表示</h1>
 <p>ようこそ#{session["username"]}さん<br>
    チーム: #{session["tname"]}</p>
+
+<form>
+<input type="button" onClick="location.href='menu.cgi'" value="戻る">
+</form>
+
 EOS
 l.searchform
 l.lookup
