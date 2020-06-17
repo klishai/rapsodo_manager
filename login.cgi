@@ -63,6 +63,7 @@ Content-type: text/html
    <footer>
      <p class="text-center"><a href="index.html">ホームへ戻る</p>
    </footer>
+   
   </body>
 </html>
 
