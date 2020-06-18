@@ -111,12 +111,12 @@ class Show
      end
      puts <<-EOS
     <section> 
-    <table id="showtable" class="highchart"
-           graph-container-before="1"
-           data-graph-container=".highchart-container"
-           data-graph-type="line"
+    <table id="showtable" class="table table-hover table table-striped table-active"
+        graph-container-before="1"
+        data-graph-container=".highchart-container"
+        data-graph-type="line"
     >
-      <thead>
+    <thead class="thead-dark table-bordered">
       <tr>
         <th>日付</th>
         <th data-graph-skip="1">名前</th>
