@@ -2,6 +2,7 @@ td {
   border: 1px solid black;
 }
 
+
 table {
   border: thick solid black;
   width: 100%;
@@ -36,3 +37,8 @@ table {
 #tablePagination_paginater {
   float: right;
 }
+
+summary {
+  cursor: pointer;
+}
+
