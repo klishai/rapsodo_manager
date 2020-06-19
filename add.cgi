@@ -23,6 +23,7 @@ Content-type: text/html
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 <title>データ新規追加 | Rapsodo Manager</title>
 <link rel="shortcut icon" type="image/x-icon" href="images/favicon.ico">
+<link rel="icon" href="img/favicon.ico">
 </head>
 <body>
 

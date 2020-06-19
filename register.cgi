@@ -30,14 +30,7 @@ Content-type: text/html
     <link rel="icon" href="img/favicon.ico">
   </head>
  
-  <body>
-   <header>
-    <div class="row">
-      <div class="col-sm-8 col-sm-offset-2 text-center">
-       <img src ="img/logo.png">
-     </div>
-    </header>
-     
+  <body> 
      <main class="register-form">
        <div class="container">
         <form action="" method="post" class="row">
@@ -63,6 +56,10 @@ Content-type: text/html
           <footer class="text-center">
           　<p><a href="login.cgi" class="btn btn-link">ログインへ戻る</a>
                <a href="index.html" class="btn btn-link">ホームへ戻る</a></p>
+           <div class="row">
+            <div class="col-sm-8 col-sm-offset-2 text-center">
+            <img src ="img/logo.png">
+           </div>
           </footer>
                      
   </main>

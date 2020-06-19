@@ -6,7 +6,7 @@
     width: 500px;
     height:360px;
     border: solid 1px #d1d1d1;
-    margin: 0px auto 15px;
+    margin: 50px auto 15px;
     padding: 20px;
     box-shadow: 0 0 8px rgba(0 , 0 , 0 , .4);
     background-color: #fff;
@@ -33,5 +33,6 @@
   margin: 20px auto;
  }
 
+ 
 
 
