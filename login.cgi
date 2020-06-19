@@ -30,13 +30,6 @@ Content-type: text/html
   <link rel="icon" href="img/favicon.ico">
   </head>
   <body>
-    <header>
-     <div class="row">
-      <div class="col-sm-8 col-sm-offset-2 text-center">
-       <img src ="img/logo.png">
-      </div>
-    </header>
-
     <main class="login-form">
       <div class="container">
         <form action=""  method="post" class="row" >
@@ -51,17 +44,21 @@ Content-type: text/html
              </div>             
                         
 
-                     
-              <button type="submit" class="btn btn-primary"> ログイン </button> 	
-	     <button type="button" class="btn btn-link"> <a href="register.cgi"> 新規登録 </a></buttom>
-         
+           <div class="text-center">             
+             <button type="submit" class="btn btn-primary"> ログイン </button> 	
+	           <button type="button" class="btn btn-link"> <a href="register.cgi"> 新規登録 </a></buttom>
+           </div>
           </div>
         </form>
        </div>
      </main>
       
    <footer>
-     <p class="text-center"><a href="index.html">ホームへ戻る</p>
+     <p class="text-center"><a href="index.html" id="b1">ホームへ戻る</a></p>
+    <div class="row">
+     <div class="col-sm-8 col-sm-offset-2 text-center">
+     <img src ="img/logo.png">
+    </div>
    </footer>
    
   </body>

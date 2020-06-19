@@ -1,43 +1,41 @@
   .cover{
-    background: url("../img/muraki.jpg") no-repeat center;
+    background: url("../img/baseball.jpg") no-repeat center;
     background-size: cover;
     position: relative;
     z-index: 0;
     /* overflow: hidden; */
     height: 100vh;
+  }
 
-}
-.cover:before{
-    content: '';
-    background: inherit;
-    -webkit-filter: blur(5px);
-    -moz-filter: blur(5px);
-    -o-filter: blur(5px);
-    -ms-filter: blur(5px);
-    filter: blur(5px);
-    position: absolute;
-    top: -5px;
-    left: -5px;
-    right: -5px;
-    bottom: -5px;
-    z-index: -1;
-}
+ #b1{
+  font-weight: bold;
+  font-size: 50px;
+  margin: 15px auto;
+ }
 
- h1.text-center{
-   letter-spacing: 0.1em;
-   text-decoration:underline;
-   text-decoration-color: #9933CC;
+ #b2{
+   margin: 50px 0 10px 20px;
    font-weight: bold;
-}
+    }
 
-#a1{
-    font-size: 1.85rem;
-    letter-spacing:0.1em;
+  p{
     font-weight: bold;
-}
+    font-size: 35px;
+    }
 
+  #a1{
+    margin: 50px 0 10px 20px;
+  }
 
-#a2{
-     font-size: 3.0rem;
-     font-weight: bold;
-}
+  #a2{
+    margin: 20px 0 10px 20px;
+  } 
+
+  #a3{
+    margin: 20px 0 10px 170px;
+    font-size: 50px;
+  } 
+  
+  .btn{
+   margin: 25px 0 10px 330px;
+  }
