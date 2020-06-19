@@ -105,8 +105,8 @@ class Edit
      end
      puts <<-EOS
     <section> 
-    <table id="showtable" class="highchart">
-      <thead>
+    <table id="showtable" class="table table-hover table table-striped table-active">
+      <thead class="thead-dark table-bordered">
       <tr>
         <th>ID</th>
         <th>名前</th>
