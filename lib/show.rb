@@ -28,7 +28,7 @@ class Show
       datasrc << row[0,row.size-1]
      }
      puts <<-EOS
-     <details>
+     <details class="container-fluid mt-2 mb-2">>
      <summary>検索フォーム</summary>
      <form method="get" action="">
      <p>

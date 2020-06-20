@@ -18,34 +18,35 @@ Content-type: text/html
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>メニュー | Rapsodo Manager</title>
-    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-    <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
     
     <link rel="stylesheet" href="css/menu.css">
   </head>
   　
 <body>
+<header>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-sm-1">
+       <img src ="img/logo.png" width="100" hight="50" id="b2">
+      </div>
+    <div class="row">
+      <div class="col-sm-5 offset-sm-3">
+       <h1 id="b1">Rapsodo&nbsp;Manager</h1>
+      </div>
+   </div>
+  </header>
   <div class="cover">
-    <header>
-      <h1 class="text-center">#{session["username"]}さん、ようこそ！</h1>
-    </header>
+    <h1 class="text-center">#{session["username"]}さん、ようこそ！</h1>
+  </div> 
   <main>
-  </div>
     <div class="container text-center">
-     <div class="row">
-      <div class="col-sm-8 col-sm-offset-2">
-       <a href="edit.cgi" role="button" class="btn btn-primary btn-lg" id="a1" >データを編集</a>
-      </div>
-      <div class="col-sm-8 col-sm-offset-2">
-       <a href="show.cgi" role="button" class="btn btn-success btn-lg" id="a2" >データを閲覧</a>
-      </div>
-      <div class="col-sm-8 col-sm-offset-2">
-       <a href="logout.cgi" role="button" class="btn btn-danger btn-lg ">ログアウト</a> 
-      </div>
+      <a href="edit.cgi" role="button" class="btn btn-primary btn-lg" id="a1" >データを編集</a>
+      <a href="show.cgi" role="button" class="btn btn-success btn-lg" id="a2" >データを閲覧</a>
+      <a href="logout.cgi" role="button" class="btn btn-danger btn-lg">ログアウト</a> 
     </div>
-  </div>
- </main>
+  </main>
 </body>
 
 </html>

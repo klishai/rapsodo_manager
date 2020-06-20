@@ -20,6 +20,7 @@ Content-type: text/html
 
 <!DOCTYPE html>
 <html lang="ja">
+
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -29,9 +30,19 @@ Content-type: text/html
     <link rel="stylesheet" href="css/register.css">
     <link rel="icon" href="img/favicon.ico">
   </head>
- 
+  <header>
+   <div class="container-fluid">
+    <div class="row">
+      <div class="col-sm-1">
+       <img src ="img/logo.png" width="100" hight="50" id="b2">
+      </div>
+    <div class="row">
+     <div class="col-sm-5 offset-sm-3">
+       <h1 id="b1">Rapsodo&nbsp;Manager</h1>
+     </div>
+  </header>
   <body> 
-     <main class="register-form">
+      <main class="register-form">
        <div class="container">
         <form action="" method="post" class="row">
           <div class="col-sm-8 col-sm-offset-2">
@@ -56,10 +67,7 @@ Content-type: text/html
           <footer class="text-center">
           　<p><a href="login.cgi" class="btn btn-link">ログインへ戻る</a>
                <a href="index.html" class="btn btn-link">ホームへ戻る</a></p>
-           <div class="row">
-            <div class="col-sm-8 col-sm-offset-2 text-center">
-            <img src ="img/logo.png">
-           </div>
+           
           </footer>
                      
   </main>

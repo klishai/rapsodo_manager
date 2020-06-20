@@ -33,6 +33,18 @@ Content-type: text/html
 <link rel="icon" href="img/favicon.ico">
 </head>
 <body>
+<header>
+   <div class="container-fluid">
+    <div class="row">
+      <div class="col-sm-1">
+       <img src ="img/logo.png" width="100" hight="50" id="b2">
+      </div>
+    <div class="row">
+     <div class="col-sm-5 offset-sm-2">
+       <h1 id="b1">Rapsodo&nbsp;Manager</h1>
+     </div>
+ </header>
+<div class="container-fluid">
 <h1>データ表示</h1>
 <p>ようこそ#{session["username"]}さん<br>
    チーム: #{session["tname"]}</p>
@@ -40,6 +52,7 @@ Content-type: text/html
 <form>
 <input type="button" onClick="location.href='menu.cgi'" value="戻る">
 </form>
+</div>
 
 EOS
 l.searchform

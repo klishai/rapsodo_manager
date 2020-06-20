@@ -27,13 +27,15 @@ class Edit
       datasrc << row[0,row.size-1]
      }
      puts <<-EOS
-     <details>
+    <details class="container-fluid mt-2 mb-2">
      <summary>検索フォーム</summary>
-     <form method="get" action="">
+      <form method="get" action="">
      <p>
      選手名検索 <span class="message"></span>
      <select name="team_pitcher">
      <option value = ""> -- </opition>
+     
+     
      EOS
 
      datasrc.map{|row|row[1]}.uniq.each{|a|
@@ -68,6 +70,7 @@ class Edit
      EOS
      puts
      puts
+    
    end
 
   def lookup
