@@ -16,9 +16,10 @@ table {
 
 #tablePagination {
   background-color: #dcdcdc;
-  font-size: 0.8em;
-  padding: 0px 5px;
-  height: 20px;
+  font-size: 1.7em;
+  padding: 8px 5px;
+  height: 70px;
+  border: thick solid;
 }
 
 #tablePagination_paginater {
@@ -27,17 +28,28 @@ table {
 }
 
 #tablePagination img {
-  padding: 0px 2px;
+  padding: 0px 3px;
+  width: 40px;
+  height: 40px;
 }
 
 #tablePagination_perPage {
   float: left;
+  margin-top: 3px;
 }
 
 #tablePagination_paginater {
   float: right;
+  padding-bottom: 50px;
+  
 }
 
 summary {
   cursor: pointer;
 }
+
+#b1{
+  font-weight: bold;
+  font-size: 40px;
+  margin: 20px 0px 0px 0px;
+ }

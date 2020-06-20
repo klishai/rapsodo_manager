@@ -3,15 +3,14 @@
 
  }
 
- .container {
-   width: 500px;
-   height: 360px;
-   border: solid 1px #d1d1d1;
-   margin: 50px auto 15px;
-   padding: 20px;
-   box-shadow: 0 0 8px rgba(0, 0, 0, .4);
-   background-color: #fff;
-   border-radius: 10px;
+ #b1{
+  font-weight: bold;
+  font-size: 40px;
+  margin: 20px 0px 0px 50px;
+ }
+
+ #b2{
+   margin: 0px 0px 0px 20px;
  }
 
  input {
