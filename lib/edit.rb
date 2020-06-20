@@ -1,32 +1,32 @@
-#encoding: UTF-8
-require "cgi"
-require "cgi/session"
-require "sqlite3"
+# frozen_string_literal: true
+
+require 'cgi'
+require 'cgi/session'
+require 'sqlite3'
 
 class Edit
-
   # イニシャライザ
   def initialize(cgi, session)
     @cgi = cgi
     @session = session
-    @id = session["id"]
-    @tname = session["tname"]
-    @db = SQLite3::Database.new("./data/data.db")
-    @cgi_p = @cgi.instance_variable_get(:@params).map{|a,b|[a, CGI.escapeHTML(b.to_s)]}.to_h
-    @data = lookup    
+    @id = session['id']
+    @tname = session['tname']
+    @db = SQLite3::Database.new('./data/data.db')
+    @cgi_p = @cgi.instance_variable_get(:@params).map { |a, b| [a, CGI.escapeHTML(b.to_s)] }.to_h
+    @data = lookup
   end
 
   def confirm_get_param
     @cgi_p
   end
-    
+
   def searchform
     datasrc = []
     sqlsrc = "select * from pitcher_data where pitcher_data.id = #{@id};"
-    @db.execute(sqlsrc).each{|row|
-      datasrc << row[0,row.size-1]
-     }
-     puts <<-EOS
+    @db.execute(sqlsrc).each do |row|
+      datasrc << row[0, row.size - 1]
+    end
+    puts <<-EOS
      <details>
      <summary>検索フォーム</summary>
      <form method="get" action="">
@@ -34,24 +34,24 @@ class Edit
      選手名検索 <span class="message"></span>
      <select name="team_pitcher">
      <option value = ""> -- </opition>
-     EOS
+    EOS
 
-     datasrc.map{|row|row[1]}.uniq.each{|a|
-     puts "<option value = #{a.to_s}>" + CGI.escapeHTML(a.to_s) + "</option>"
-     }
-     puts <<-EOS
+    datasrc.map { |row| row[1] }.uniq.each do |a|
+      puts "<option value = #{a}>" + CGI.escapeHTML(a.to_s) + '</option>'
+    end
+    puts <<-EOS
      </select>
      </p>                                                                                                                                                                                    
      <p>
      球種検索
      <select name ="pitch_type">
      <option value = ""> -- </opition>
-     EOS
+    EOS
 
-     datasrc.map{|row| row[3]}.uniq.each{|t|
-     puts "<option value = #{t.to_s}>" + CGI.escapeHTML(t.to_s) + "</option>"
-     }
-     puts <<-EOS
+    datasrc.map { |row| row[3] }.uniq.each do |t|
+      puts "<option value = #{t}>" + CGI.escapeHTML(t.to_s) + '</option>'
+    end
+    puts <<-EOS
      </select>
      </p>
      <p>
@@ -65,45 +65,49 @@ class Edit
      </p>
      </form>
      </details>
-     EOS
-     puts
-     puts
-   end
+    EOS
+    puts
+    puts
+  end
 
   def lookup
     data = []
     # teams
-    sql =  "select * from pitcher_data where pitcher_data.id = #{@session["id"]}"
-    sql += " and pitcher_data.pitcher_name = '#{@cgi["team_pitcher"]}'" unless @cgi["team_pitcher"].nil? || @cgi["team_pitcher"].empty?
-    sql += " and pitcher_data.pitch_type = '#{@cgi["pitch_type"]}'" unless @cgi["pitch_type"].nil? || @cgi["pitch_type"].empty?
-    unless @cgi["day1"].nil? || @cgi["day1"].empty? 
-    day1 = @cgi["day1"].delete!("-").to_i
-    sql += " and pitcher_data.day >= #{day1} "
+    sql =  "select * from pitcher_data where pitcher_data.id = #{@session['id']}"
+    unless @cgi['team_pitcher'].nil? || @cgi['team_pitcher'].empty?
+      sql += " and pitcher_data.pitcher_name = '#{@cgi['team_pitcher']}'"
+    end
+    unless @cgi['pitch_type'].nil? || @cgi['pitch_type'].empty?
+      sql += " and pitcher_data.pitch_type = '#{@cgi['pitch_type']}'"
+    end
+    unless @cgi['day1'].nil? || @cgi['day1'].empty?
+      day1 = @cgi['day1'].delete!('-').to_i
+      sql += " and pitcher_data.day >= #{day1} "
     end
 
-    unless @cgi["day2"].nil? || @cgi["day2"].empty?
-      day2 = @cgi["day2"].delete!("-").to_i      
+    unless @cgi['day2'].nil? || @cgi['day2'].empty?
+      day2 = @cgi['day2'].delete!('-').to_i
       sql += " and pitcher_data.day <= #{day2} "
     end
 
-    @db.execute(sql).each{|row|
+    @db.execute(sql).each do |row|
       data << row
-    }
-    return data
+    end
+    data
   end
-  
+
   def show_table
-     cond = []
-     cond << "選手名:" +  @cgi['team_pitcher'] unless @cgi['team_pitcher'].empty?
-     cond << "球種名:" +  @cgi['pitch_type'] unless @cgi['pitch_type'].empty?
-     cond << "From:" +  @cgi['day1'] unless @cgi['day1'].empty?
-     cond << "Till:" +  @cgi['day2'] unless @cgi['day2'].empty?
-     puts "<h2>「#{cond.empty? ? "(条件なし)" : cond.join(?, + ?\s)}」の検索結果: #{@data.size}件HIT</h2>"
-     if @data.size != 0
-     unless @cgi["team_pitcher"].empty? || @cgi["pitch_type"].empty?
-       puts '<section><div class="highchart-container"></div></section>' 
-     end
-     puts <<-EOS
+    cond = []
+    cond << '選手名:' +  @cgi['team_pitcher'] unless @cgi['team_pitcher'].empty?
+    cond << '球種名:' +  @cgi['pitch_type'] unless @cgi['pitch_type'].empty?
+    cond << 'From:' +  @cgi['day1'] unless @cgi['day1'].empty?
+    cond << 'Till:' +  @cgi['day2'] unless @cgi['day2'].empty?
+    puts "<h2>「#{cond.empty? ? '(条件なし)' : cond.join(',' + "\s")}」の検索結果: #{@data.size}件HIT</h2>"
+    unless @data.empty?
+      unless @cgi['team_pitcher'].empty? || @cgi['pitch_type'].empty?
+        puts '<section><div class="highchart-container"></div></section>'
+      end
+      puts <<-EOS
     <section> 
     <table id="showtable" class="highchart table table-hover table table-striped table-active">
       <thead class="thead-dark table-bordered">
@@ -120,31 +124,31 @@ class Edit
         <th>編集</th>
       </tr>
       </thead>
-    EOS
-    puts"<tbody>"
-    @data.each{|r|
-      puts "<tr>"
-      r[0,r.size-1].each{|d|
-        puts "<td>" + CGI.escapeHTML(d.to_s) + "</td>"
-      }
-      # 編集ボタン
-      puts '<td><a class="btn btn-primary" href="' +
-      "edit_s.cgi?id=#{r[0]}" +
-      '" role="button">編集</a></td>'
-      puts "</tr>"
-    }
-    puts "</tbody>"
-    puts "</table></section>"
-   end
-   end
+      EOS
+      puts '<tbody>'
+      @data.each do |r|
+        puts '<tr>'
+        r[0, r.size - 1].each do |d|
+          puts '<td>' + CGI.escapeHTML(d.to_s) + '</td>'
+        end
+        # 編集ボタン
+        puts '<td><a class="btn btn-primary" href="' \
+             "edit_s.cgi?id=#{r[0]}" \
+             '" role="button">編集</a></td>'
+        puts '</tr>'
+      end
+      puts '</tbody>'
+      puts '</table></section>'
+    end
+  end
 
-   def show_only_table(id)
+  def show_only_table(id)
     data = []
     sql = 'select * from pitcher_data where data_id = ?'
-    @db.execute(sql, id)[0].each{|row|
+    @db.execute(sql, id)[0].each do |row|
       data << CGI.escapeHTML(row.to_s)
-    }
-    return <<-EOS
+    end
+    <<-EOS
     <input type="hidden" name="id" value="#{data[0]}">
     <table>
     <tr>
@@ -198,16 +202,16 @@ class Edit
     </tr>
     </table>
     EOS
-   end
+  end
 
-   def show_adddata_table
+  def show_adddata_table
     data = []
     sql = 'select data_id from pitcher_data order by data_id desc limit 1;'
-    @db.execute(sql)[0].each{|row|
+    @db.execute(sql)[0].each do |row|
       data << row
-    }
+    end
     data_id = data[0] + 1
-    return <<-EOS
+    <<-EOS
     <input type="hidden" name="add" value="1">
     <input type="hidden" name="data_id" value="#{data_id}">
     <table>
@@ -261,5 +265,5 @@ class Edit
     </tr>
     </table>
     EOS
-   end
+  end
 end

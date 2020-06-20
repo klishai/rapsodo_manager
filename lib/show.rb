@@ -1,33 +1,33 @@
-require "cgi"
-require "cgi/session"
-require "sqlite3"
-#encoding: UTF-8
+# frozen_string_literal: true
 
-# 情報表示
+require 'cgi'
+require 'cgi/session'
+require 'sqlite3'
+# encoding: UTF-8
+# show informations
 class Show
-
-  # イニシャライザ
+  # init
   def initialize(cgi, session)
     @cgi = cgi
     @session = session
-    @id = session["id"]
-    @tname = session["tname"]
-    @db = SQLite3::Database.new("./data/data.db")
-    @cgi_p = @cgi.instance_variable_get(:@params).map{|a,b|[a, CGI.escapeHTML(b.to_s)]}.to_h
-    @data = lookup    
+    @id = session['id']
+    @tname = session['tname']
+    @db = SQLite3::Database.new('./data/data.db')
+    @cgi_p = @cgi.instance_variable_get(:@params).map { |a, b| [a, CGI.escapeHTML(b.to_s)] }.to_h
+    @data = lookup
   end
 
   def confirm_get_param
     @cgi_p
   end
-    
+
   def searchform
     datasrc = []
     sqlsrc = "select * from pitcher_data where pitcher_data.id = #{@id};"
-    @db.execute(sqlsrc).each{|row|
-      datasrc << row[0,row.size-1]
-     }
-     puts <<-EOS
+    @db.execute(sqlsrc).each do |row|
+      datasrc << row[0, row.size - 1]
+    end
+    puts <<-HTML
      <details>
      <summary>検索フォーム</summary>
      <form method="get" action="">
@@ -35,24 +35,24 @@ class Show
      選手名検索 <span class="message">(※グラフ)</span>
      <select name="team_pitcher">
      <option value = ""> -- </opition>
-     EOS
+    HTML
 
-     datasrc.map{|row|row[1]}.uniq.each{|a|
-     puts "<option value = #{a.to_s}>" + CGI.escapeHTML(a.to_s) + "</option>"
-     }
-     puts <<-EOS
+    datasrc.map { |row| row[1] }.uniq.each do |a|
+      puts "<option value = #{a}>" + CGI.escapeHTML(a.to_s) + '</option>'
+    end
+    puts <<-HTML
      </select>
      </p>                                                                                                                                                                                    
      <p>
      球種検索<span class="message">(※グラフ)</span>     
      <select name ="pitch_type">
      <option value = ""> -- </opition>
-     EOS
+    HTML
 
-     datasrc.map{|row| row[3]}.uniq.each{|t|
-     puts "<option value = #{t.to_s}>" + CGI.escapeHTML(t.to_s) + "</option>"
-     }
-     puts <<-EOS
+    datasrc.map { |row| row[3] }.uniq.each do |t|
+      puts "<option value = #{t}>" + CGI.escapeHTML(t.to_s) + '</option>'
+    end
+    puts <<-HTML
      </select>
      </p>
 
@@ -69,54 +69,58 @@ class Show
 
      </form>
      </details>
-     EOS
-     puts
-     puts
-   end
+    HTML
+    puts
+    puts
+  end
 
   def lookup
     data = []
     # teams
-    sql = "select * from pitcher_data where pitcher_data.id in " +
-          "(select id from user where teamname == '#{@session["tname"]}')"
-    sql += " and pitcher_data.pitcher_name = '#{@cgi["team_pitcher"]}'" unless @cgi["team_pitcher"].nil? || @cgi["team_pitcher"].empty?
-    sql += " and pitcher_data.pitch_type = '#{@cgi["pitch_type"]}'" unless @cgi["pitch_type"].nil? || @cgi["pitch_type"].empty?
-    unless @cgi["day1"].nil? || @cgi["day1"].empty? 
-    day1 = @cgi["day1"].delete!("-").to_i
-    sql += " and pitcher_data.day >= #{day1} "
+    sql = 'select * from pitcher_data where pitcher_data.id in ' \
+          "(select id from user where teamname == '#{@session['tname']}')"
+    unless @cgi['team_pitcher'].nil? || @cgi['team_pitcher'].empty?
+      sql += " and pitcher_data.pitcher_name = '#{@cgi['team_pitcher']}'"
+    end
+    unless @cgi['pitch_type'].nil? || @cgi['pitch_type'].empty?
+      sql += " and pitcher_data.pitch_type = '#{@cgi['pitch_type']}'"
+    end
+    unless @cgi['day1'].nil? || @cgi['day1'].empty?
+      day1 = @cgi['day1'].delete!('-').to_i
+      sql += " and pitcher_data.day >= #{day1} "
     end
 
-    unless @cgi["day2"].nil? || @cgi["day2"].empty?   
-    day2 = @cgi["day2"].delete!("-").to_i      
-    sql += " and pitcher_data.day <= #{day2} "
+    unless @cgi['day2'].nil? || @cgi['day2'].empty?
+      day2 = @cgi['day2'].delete!('-').to_i
+      sql += " and pitcher_data.day <= #{day2} "
     end
- 
-    sql += ";"
-    @db.execute(sql).each{|row|
-      data << row[1,row.size-2]
-    }
-    return data
+
+    sql += ';'
+    @db.execute(sql).each do |row|
+      data << row[1, row.size - 2]
+    end
+    data
   end
-  
+
   def show_table
-     cond = []
-     cond << "選手名:" +  @cgi['team_pitcher'] unless @cgi['team_pitcher'].empty?
-     cond << "球種名:" +  @cgi['pitch_type'] unless @cgi['pitch_type'].empty?
-     cond << "From:" +  @cgi['day1'] unless @cgi['day1'].empty?
-     cond << "Till:" +  @cgi['day2'] unless @cgi['day2'].empty?
-     puts "<h2>「#{cond.empty? ? "(条件なし)" : cond.join(?, + ?\s)}」の検索結果: #{@data.size}件HIT</h2>"
-     if @data.size != 0
-     unless @cgi["team_pitcher"].empty? || @cgi["pitch_type"].empty?
-       puts '<section><div class="highchart-container"></div></section>' 
-     end
-     puts <<-EOS
-    <section> 
-    <table id="showtable" class="highchart table table-hover table table-striped table-active"
+    cond = []
+    cond << '選手名:' +  @cgi['team_pitcher'] unless @cgi['team_pitcher'].empty?
+    cond << '球種名:' +  @cgi['pitch_type'] unless @cgi['pitch_type'].empty?
+    cond << 'From:' +  @cgi['day1'] unless @cgi['day1'].empty?
+    cond << 'Till:' +  @cgi['day2'] unless @cgi['day2'].empty?
+    puts "<h2>「#{cond.empty? ? '(条件なし)' : cond.join(',' + "\s")}」の検索結果: #{@data.size}件HIT</h2>"
+    unless @data.empty?
+      unless @cgi['team_pitcher'].empty? || @cgi['pitch_type'].empty?
+        puts '<section><div class="highchart-container"></div></section>'
+      end
+      puts <<-HTML
+      <section> 
+      <table id="showtable" class="highchart table table-hover table table-striped table-active"
         graph-container-before="1"
         data-graph-container=".highchart-container"
         data-graph-type="line"
-    >
-    <thead class="thead-dark table-bordered">
+      >
+      <thead class="thead-dark table-bordered">
       <tr>
         <th>日付</th>
         <th data-graph-skip="1">名前</th>
@@ -128,19 +132,18 @@ class Show
         <th data-graph-hidden="1">横の変化量(cm)</th>
       </tr>
       </thead>
-    EOS
-    puts"<tbody>"
-    @data.each{|r|
-      puts "<tr>"
-      r[0], r[1] = r[1], r[0]
-      r.each{|d|
-        puts "<td>" + CGI.escapeHTML(d.to_s) + "</td>"
-      }
-      puts "</tr>"
-    }
-    puts "</tbody>"
-    puts "</table></section>"
-   end
-   end
-
+      HTML
+      puts '<tbody>'
+      @data.each do |r|
+        puts '<tr>'
+        r[0], r[1] = r[1], r[0]
+        r.each do |d|
+          puts '<td>' + CGI.escapeHTML(d.to_s) + '</td>'
+        end
+        puts '</tr>'
+      end
+      puts '</tbody>'
+      puts '</table></section>'
+    end
+  end
 end
