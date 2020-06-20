@@ -2,6 +2,14 @@ body {
     background-color: #fafafa;
 	
  }
+ #b1{
+  font-weight: bold;
+  font-size: 40px;
+  margin: 35px 0px 0px 50px;
+ }
+ #b2{
+   margin: 0px 0px 0px 20px;
+ }
  .container {
     width: 500px;
     height:410px;
