@@ -1,12 +1,13 @@
 body {
     background-color: #fafafa;
-	
  }
+
  #b1{
   font-weight: bold;
   font-size: 40px;
   margin: 35px 0px 0px 50px;
  }
+
  #b2{
    margin: 0px 0px 0px 20px;
  }
@@ -28,16 +29,35 @@ body {
    margin: 3px auto;
  }
 
- #a2{
-   margin:20px auto 0px;
- }
- #a3{
-   margin:20px auto 0px; 
- }
- 
- .new{
-  font-size:18px;
+}
+
+.container {
+  width: 500px;
+  height: 410px;
+  border: solid 1px #d1d1d1;
+  margin: 50px auto 0px;
+  padding: 10px;
+  box-shadow: 0 0 8px rgba(0, 0, 0, .4);
+  background-color: #fff;
+  border-radius: 10px;
+}
+
+input {
+  font-size: 1.2em;
+  width: 100%;
+  padding: 30px;
+  margin: 3px auto;
+}
+
+#a2 {
+  margin: 20px auto 0px;
+}
+
+#a3 {
+  margin: 20px auto 0px;
+}
+
+.new {
+  font-size: 18px;
   font-weight: bold;
 }
-  
-
