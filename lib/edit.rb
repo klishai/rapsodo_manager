@@ -61,11 +61,7 @@ class Edit
      <input type="date" name="day1"> ～　<input type ="date" name ="day2" >
      </p>
      <p>
-<<<<<<< HEAD
-     <input type="submit" class="btn btn-outline-secondary" value="送信"></p>
-=======
      <input type="submit" class="btn btn-outline-secondary" value="検索"></p>
->>>>>>> origin/master
      </p>
      </form>
      </details>

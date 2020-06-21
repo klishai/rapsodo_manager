@@ -3,10 +3,7 @@
 require 'cgi'
 require 'cgi/session'
 require 'sqlite3'
-<<<<<<< HEAD
-=======
 require 'bcrypt'
->>>>>>> origin/master
 
 # http://capm-network.com/?tag=Ruby-CGI%E3%82%BB%E3%83%83%E3%82%B7%E3%83%A7%E3%83%B3
 
@@ -69,23 +66,14 @@ class Login
   def check_auth(name, pass)
     data = []
     name = CGI.escapeHTML(name)
-<<<<<<< HEAD
-    sql = "select id,password,teamname from user where user.username = '#{name}';"
-    @db.execute(sql).each do |row|
-=======
     sql = 'select id,password,teamname from user where user.username = ?;'
     @db.execute(sql, name).each do |row|
->>>>>>> origin/master
       data << row
     end
     if data == []
       @message = '名前が間違っているか, 登録されていません.'
       false
-<<<<<<< HEAD
-    elsif data[0][1] != pass
-=======
     elsif BCrypt::Password.new(data[0][1]) != pass
->>>>>>> origin/master
       @message = 'パスワードが間違っています.'
       false
     else

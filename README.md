@@ -1,14 +1,3 @@
-<<<<<<< HEAD
-# rapsodo_manager
-
-野球トラッキングシステムRapsodoの測定結果管理アプリ
-
-## このリポジトリは…
-
-- 筑波大学知識情報・図書館学類 システム主専攻3年次授業の課題です。
-
-- 野球トラッキングシステム[Rapsodo]の投手データ管理アプリ
-=======
 # Rapsodo Manager
 
 ![logo](https://raw.githubusercontent.com/klishai/rapsodo_manager/master/img/logo.png)
@@ -61,4 +50,3 @@
 [@eggplants]: https://github.com/eggplants
 [@irizon]: https://github.com/irizon
 [@degfi]: https://github.com/
->>>>>>> origin/master

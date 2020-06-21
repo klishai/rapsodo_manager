@@ -42,13 +42,8 @@ puts <<~EOS if session['id']
   </div>
   <div class="container">
     <div class="row">
-<<<<<<< HEAD
-      <div class="col-sm-4">
-        <p class="message">#{cgi['message'].gsub('br', '<br>')}</p>
-=======
       <div class="col-sm-5">
         <p class="message text-danger">#{cgi['message'].gsub('br', '<br>')}</p>
->>>>>>> origin/master
           <form
               class="row"
               method="post"

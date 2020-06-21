@@ -2,10 +2,7 @@
 
 require 'cgi'
 require 'sqlite3'
-<<<<<<< HEAD
-=======
 require 'bcrypt'
->>>>>>> origin/master
 
 # 新規名前とパスワードチェック
 # 文字種と重複をみる
@@ -61,13 +58,8 @@ class Register
     # ログイン情報のチェック
     data = []
     name = CGI.escapeHTML(name)
-<<<<<<< HEAD
-    sql = "select username from user where user.username = '#{name}';"
-    @db.execute(sql).each  do |row|
-=======
     sql = 'select username from user where user.username = ?;'
     @db.execute(sql, name).each  do |row|
->>>>>>> origin/master
       data << row
     end
     if !data.empty?
@@ -79,11 +71,7 @@ class Register
       @db.execute(sql).each do |row|
         data << row[0]
       end
-<<<<<<< HEAD
-      @pre_id = data[-1]
-=======
       @pre_id = data[-1].nil? ? 0 : data[-1]
->>>>>>> origin/master
       true
     end
   end
@@ -93,15 +81,10 @@ class Register
     name = CGI.escapeHTML(name)
     pass = CGI.escapeHTML(pass)
     team = CGI.escapeHTML(team)
-<<<<<<< HEAD
-    sql = "insert into user values(#{@pre_id + 1}, '#{name}', '#{pass}', '#{team}');"
-    @db.execute(sql).each do |row|
-=======
     sql = 'insert into user values(?, ?, ?, ?);'
     @db.execute(sql,
       @pre_id + 1, name, BCrypt::Password.create(pass).to_s, team
     ).each do |row|
->>>>>>> origin/master
       data << row
     end
   end
