@@ -25,8 +25,9 @@ class Show
 
   def searchform
     datasrc = []
-    sqlsrc = "select * from pitcher_data where pitcher_data.id = ?;"
-    @db.execute(sqlsrc, @id).each do |row|
+    sqlsrc = 'select * from pitcher_data where pitcher_data.id in ' \
+             '(select id from user where teamname == ?)'
+    @db.execute(sqlsrc, @tname).each do |row|
       datasrc << row[0, row.size - 1]
     end
     puts <<-HTML
