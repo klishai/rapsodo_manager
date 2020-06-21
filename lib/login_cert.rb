@@ -3,6 +3,7 @@
 require 'cgi'
 require 'cgi/session'
 require 'sqlite3'
+require 'bcrypt'
 
 # http://capm-network.com/?tag=Ruby-CGI%E3%82%BB%E3%83%83%E3%82%B7%E3%83%A7%E3%83%B3
 
@@ -72,7 +73,7 @@ class Login
     if data == []
       @message = '名前が間違っているか, 登録されていません.'
       false
-    elsif data[0][1] != pass
+    elsif BCrypt::Password.new(data[0][1]) != pass
       @message = 'パスワードが間違っています.'
       false
     else
