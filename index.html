@@ -1,54 +1,36 @@
 <!doctype html>
 <html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
 
-  <!-- Bootstrap CSS -->
-  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
-    </script>
-  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
-    </script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
-    integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous">
-    </script>
-
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
-    integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-  <link rel="icon" href="img/favicon.ico">
-  <link rel="stylesheet" href="css/index.css">
-  <title>インデックス | Rapsodo manager</title>
-</head>
-
-<body>
-  <div class="cover">
-    <header>
-      <div class="container-fluid">
-        <div class="row">
-          <div class="col-sm-1">
-            <img src="img/logo.png" width="180" hight="120">
-          </div>
-          <div class="row">
-            <div class="col-sm-5 offset-sm-3">
-              <h1 id="b1">Rapsodo&nbsp;Manager</h1>
-            </div>
-
-    </header>
-    <main>
-      <div class="container">
-        <h1 id="b2">Rapsodoデータ管理アプリ</h1>
-      </div>
-
-      <p id="a1">入力したRapsodoデータをグラフや表で</p>
-      <p id="a2"> 視覚的に分析</p>
-      <p class="text-danger" id="a3">Together, We Win!</p>
-
-      <button class="btn btn-primary  btn-lg text-center" onclick="location.href='login.cgi'">ログイン</button>
-  </div>
-  </main>
-</body>
-
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="icon" href="img/favicon.ico">
+    <link rel="stylesheet" href="css/index.css">
+    <title>インデックス | Rapsodo manager</title>
+  </head>
+  <body>
+    <div class="cover">
+      <header>
+        <div cover class="ml-3">
+          <h1 id="b1"><img src ="img/logo.png"  width="100" hight="50" id="b2">Rapsodo&nbsp;Manager</h1>
+        </div>
+      </header>
+      <main>
+        <h1 class="text-center text-white">野球投手データ管理アプリ</h1>
+        <div class="container text-center">
+          <p class="lead  mt-5 py-4" id="a1">測定したRapsodoデータを<span class="text-danger">グラフ</span>や<span class="text-danger">表</span>で</p>
+          <p class="lead  mt-4 " id="a1"> 視覚的に分析</p>
+          <p class="lead  text-danger py-1 mb-4 " id="a2">Together, We Win!</p>
+          <button class="btn btn-primary  btn-lg text-center ml-4"
+                  onclick="location.href='login.cgi'">ログイン</button>
+        </div>
+     </main>
+    </div>
+  </body>
 </html>
