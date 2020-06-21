@@ -1,6 +1,7 @@
 # rapsodo_manager
 
 野球トラッキングシステムRapsodoの測定結果管理アプリ
+![logo](https://raw.githubusercontent.com/klishai/rapsodo_manager/master/img/logo.png)
 
 ## このリポジトリは…
 
