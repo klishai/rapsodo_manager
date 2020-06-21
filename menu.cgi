@@ -29,7 +29,7 @@ puts <<~EOS if session['id']
   <body>
   <header>
   <div cover class="mb-3 ml-3">
-    <h1 id="b1"><img src ="img/logo.png" width="100" hight="50" id="b2">Rapsodo&nbsp;Manager</h1>
+    <h1 id="b1"><a href="index.html"><img src ="img/logo.png" width="100" hight="50" id="b2"></a>Rapsodo&nbsp;Manager</h1>
   </div>
   </header>
     <div class="cover">
