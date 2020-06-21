@@ -27,13 +27,13 @@ class Edit
       datasrc << row[0, row.size - 1]
     end
     puts <<-EOS
-     <details>
-     <summary>検索フォーム</summary>
-     <form method="get" action="">
-     <p>
-     選手名検索 <span class="message"></span>
-     <select name="team_pitcher">
-     <option value = ""> -- </opition>
+    <details class="ml-3 mt-2 mb-2">
+      <summary>検索フォーム</summary>
+      <form method="get" action="">
+      <p>
+      選手名検索 <span class="message"></span>
+      <select name="team_pitcher">
+      <option value = ""> -- </opition>
     EOS
 
     datasrc.map { |row| row[1] }.uniq.each do |a|
@@ -61,7 +61,7 @@ class Edit
      <input type="date" name="day1"> ～　<input type ="date" name ="day2" >
      </p>
      <p>
-     <input type="submit" value="送信"></p>
+     <input type="submit" class="btn btn-outline-secondary" value="送信"></p>
      </p>
      </form>
      </details>

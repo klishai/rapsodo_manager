@@ -28,47 +28,47 @@ class Show
       datasrc << row[0, row.size - 1]
     end
     puts <<-HTML
-     <details>
-     <summary>検索フォーム</summary>
-     <form method="get" action="">
-     <p>
-     選手名検索 <span class="message">(※グラフ)</span>
-     <select name="team_pitcher">
-     <option value = ""> -- </opition>
+    <details class="ml-3 mt-2 mb-2">
+      <summary>検索フォーム</summary>
+      <form method="get" action="">
+      <p>
+      選手名検索 <span class="message">(※グラフ)</span>
+      <select name="team_pitcher">
+      <option value = ""> -- </opition>
     HTML
 
     datasrc.map { |row| row[1] }.uniq.each do |a|
       puts "<option value = #{a}>" + CGI.escapeHTML(a.to_s) + '</option>'
     end
     puts <<-HTML
-     </select>
-     </p>                                                                                                                                                                                    
-     <p>
-     球種検索<span class="message">(※グラフ)</span>     
-     <select name ="pitch_type">
-     <option value = ""> -- </opition>
+      </select>
+      </p>                                                                                                                                                                                    
+      <p>
+      球種検索<span class="message">(※グラフ)</span>     
+      <select name ="pitch_type">
+      <option value = ""> -- </opition>
     HTML
 
     datasrc.map { |row| row[3] }.uniq.each do |t|
       puts "<option value = #{t}>" + CGI.escapeHTML(t.to_s) + '</option>'
     end
     puts <<-HTML
-     </select>
-     </p>
+      </select>
+      </p>
 
      <p>
      期間検索
-     </p>
-     <p>
-     <input type="date" name="day1"> ～　<input type ="date" name ="day2" >
-     </p>
+      </p>
+      <p>
+      <input type="date" name="day1"> ～　<input type ="date" name ="day2" >
+      </p>
 
-     <p>
-     <input type="submit" value="送信"></p>
-     </p>
+      <p>
+      <input type="submit" class="btn btn-outline-secondary value="送信"></p>
+      </p>
 
-     </form>
-     </details>
+      </form>
+    </details>
     HTML
     puts
     puts

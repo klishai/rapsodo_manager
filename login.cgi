@@ -32,36 +32,35 @@ puts <<~EOS unless session['id']
     <link rel="icon" href="img/favicon.ico">
     </head>
     <body>
-      <main class="login-form">
-        <div class="container">
-          <form action=""  method="post" class="row" >
-             <div class="col-sm-8 col-sm-offset-2">
-               <p class="new text-center">ログイン</p>
-               <p>#{m}</p>
-               <div class="form-group">
-                 <label for="username"id="a1" >Username (英数字3~8文字) <span class="label label-danger">必須</span></label>
-                   <input type="text" id="username" class="form-control" name="username" required autofocus>             
-                 <label for="password"id="a2" >Password (英数記号全て含む8~16文字) <span class="label label-danger">必須</span></label>
-                   <input type="password" id="password" class="form-control" name="password" required>
-               </div>             
-                          
-  
-             <div class="text-center">             
-               <button type="submit" class="btn btn-primary"> ログイン </button> 	
-  	           <button type="button" class="btn btn-link"> <a href="register.cgi"> 新規登録 </a></buttom>
-             </div>
-            </div>
-          </form>
-         </div>
-       </main>
-        
-     <footer>
-       <p class="text-center"><a href="index.html" id="b1">ホームへ戻る</a></p>
-      <div class="row">
-       <div class="col-sm-8 col-sm-offset-2 text-center">
-       <img src ="img/logo.png">
+    <header>
+      <div cover>
+        <h1 id="b1"><img src ="img/logo.png" width="100" hight="50" id="b2">Rapsodo&nbsp;Manager</h1>
       </div>
-     </footer>
+    </header>
+    <main class="login-form">
+      <div class="container">
+        <form action=""  method="post" class="row" >
+          <div class="col-sm-8 col-sm-offset-2">
+            <p class="new text-center">ログイン</p>
+            <p>#{m}</p>
+            <div class="form-group">
+              <label for="username"id="a1" >Username (英数字3~8文字) <span class="label label-danger">必須</span></label>
+              <input type="text" id="username" class="form-control" name="username" required autofocus>             
+              <label for="password"id="a2" >Password (英数記号全て含む8~16文字) <span class="label label-danger">必須</span></label>
+              <input type="password" id="password" class="form-control" name="password" required>
+            </div>             
+            <div class="text-center">             
+              <button type="submit" class="btn btn-primary"> ログイン </button> 	
+  	          <button type="button" class="btn btn-link"> <a href="register.cgi"> 新規登録 </a></buttom>
+            </div>
+          </div>
+        </form>
+      </div>
+    </main>
+        
+    <footer>
+      <p class="text-center"><a href="index.html" id="c1">ホームへ戻る</a></p>
+    </footer>
      
     </body>
   </html>
