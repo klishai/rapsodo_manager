@@ -34,14 +34,19 @@ puts <<~HTML if session['id']
   <link rel="icon" href="img/favicon.ico">
   </head>
   <body>
-  <h1>データ表示</h1>
-  <p>ようこそ#{session['username']}さん<br>
-     チーム: #{session['tname']}</p>
-  
-  <form>
-  <input type="button" onClick="location.href='menu.cgi'" value="戻る">
-  </form>
-  
+  <header>
+  <div cover class="mb-3 ml-3 mt-3">
+    <h1 id="b1"><img src ="img/logo.png" width="100" hight="50" id="b2">Rapsodo&nbsp;Manager</h1>
+  </div>
+  </header>
+  <div class="cover ml-3">
+    <h1>データ表示</h1>
+    <p>
+      ようこそ#{session['username']}さん<br>
+      チーム: #{session['tname']}
+    </p>
+    <input type="button" onClick="location.href='menu.cgi'" class="btn btn-outline-secondary"  value="戻る">
+  </div>
 HTML
 l.searchform
 l.lookup
@@ -49,15 +54,14 @@ l.show_table
 puts <<~HTML
   <script type="text/javascript">
     $(document).ready(function () {
-     var options = {
-       currPage: 1,
-       optionsForRows: [20, 50, 100],
-       rowsPerPage: 20,
-     };
-     $("table#showtable").tablePagination(options);
-     $("table.highchart").highchartTable();
-   
-   });
+      var options = {
+        currPage: 1,
+        optionsForRows: [20, 50, 100],
+        rowsPerPage: 20,
+      };
+      $("table#showtable").tablePagination(options);
+      $("table.highchart").highchartTable();
+    });
   </script>
   </body>
   </html>
