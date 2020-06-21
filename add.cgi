@@ -35,9 +35,9 @@ puts <<~EOS if session['id']
   </div>
   </header>
   <div class="cover ml-3">
+    <h1>データ新規追加</h1>
     <p>ようこそ#{session['username']}さん<br>
       チーム: #{session['tname']}</p>
-    <h1>データ詳細編集</h1>
     <input type="button" onClick="location.href='edit.cgi'" class="btn btn-outline-secondary mt-2"
      value="戻る">
   </div>
