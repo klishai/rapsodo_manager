@@ -51,18 +51,17 @@ puts <<~EOS unless session['id']
             </div>             
             <div class="text-center">             
               <button type="submit" class="btn btn-primary"> ログイン </button> 	
-  	          <button type="button" class="btn btn-link"> <a href="register.cgi"> 新規登録 </a></button>
             </div>
           </div>
         </form>
       </div>
     </main>
         
-    <footer>
-      <p class="text-center"><a href="index.html" id="c1">ホームへ戻る</a></p>
+    <footer class="text-center">
+      <a href="register.cgi" class="btn btn-link">新規登録ページへ</a>
+      <a href="index.html" class="btn btn-link">ホームへ戻る</a>
     </footer>
      
     </body>
   </html>
-  
 EOS

@@ -42,7 +42,7 @@ puts <<~EOS unless f
       <div class="container">
         <form action="" method="post" class="row">
           <div class="col-sm-8 col-sm-offset-2">
-  　　　　　 <p class="new text-center">新規登録</p>             
+            <p class="new text-center">新規登録</p>             
             <p class="text-danger">#{m}</p>
             <div class="form-group">
               <label for="username id="a1">Username (英数字3~8文字) <span class="label label-danger">必須</span></label>
@@ -54,17 +54,14 @@ puts <<~EOS unless f
             </div>                                
             <div class="text-center">    
               <button type="submit" class="btn btn-primary text-center">新規登録 </button>
-              <button type="button" class="btn btn-link"> <a href="login.cgi"> ログイン</a></button>
             </div>        
           </div>
         </form>
       </div>
-         
       <footer class="text-center">
-        <p><a href="login.cgi" class="btn btn-link">ログインへ戻る</a>
-          <a href="index.html" class="btn btn-link">ホームへ戻る</a></p>
+        <a href="login.cgi" class="btn btn-link">ログインへ戻る</a>
+        <a href="index.html" class="btn btn-link">ホームへ戻る</a>
       </footer>
-                       
     </main>
     </body>
   </html>
