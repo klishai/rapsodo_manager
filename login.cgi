@@ -42,7 +42,11 @@ puts <<~EOS unless session['id']
         <form action=""  method="post" class="row" >
           <div class="col-sm-8 col-sm-offset-2">
             <p class="new text-center">ログイン</p>
+<<<<<<< HEAD
             <p>#{m}</p>
+=======
+            <p class="text-danger">#{m}</p>
+>>>>>>> origin/master
             <div class="form-group">
               <label for="username"id="a1" >Username (英数字3~8文字) <span class="label label-danger">必須</span></label>
               <input type="text" id="username" class="form-control" name="username" required autofocus>             
@@ -51,7 +55,11 @@ puts <<~EOS unless session['id']
             </div>             
             <div class="text-center">             
               <button type="submit" class="btn btn-primary"> ログイン </button> 	
+<<<<<<< HEAD
   	          <button type="button" class="btn btn-link"> <a href="register.cgi"> 新規登録 </a></buttom>
+=======
+  	          <button type="button" class="btn btn-link"> <a href="register.cgi"> 新規登録 </a></button>
+>>>>>>> origin/master
             </div>
           </div>
         </form>

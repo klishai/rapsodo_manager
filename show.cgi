@@ -29,7 +29,13 @@ puts <<~HTML if session['id']
   <link rel="stylesheet" href="css/styletable.css" />
   <script src="libjs/highcharts.src.js"></script>
   <script src="libjs/jquery.highchartTable.js"></script>
+<<<<<<< HEAD
   <link rel="shortcut icon" type="image/x-icon" href="images/favicon.ico">
+=======
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.0.2/pace.min.js"></script>
+  <link rel="shortcut icon" type="image/x-icon" href="images/favicon.ico">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pace/1.0.2/themes/black/pace-theme-center-circle.min.css" />
+>>>>>>> origin/master
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
   <link rel="icon" href="img/favicon.ico">
   </head>
