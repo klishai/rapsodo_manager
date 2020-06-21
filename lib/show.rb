@@ -13,7 +13,9 @@ class Show
     @id = session['id']
     @tname = session['tname']
     @db = SQLite3::Database.new('./data/data.db')
-    @cgi_p = @cgi.instance_variable_get(:@params).map { |a, b| [a, CGI.escapeHTML(b.to_s)] }.to_h
+    @cgi_p = @cgi.instance_variable_get(:@params).map { |a, b|
+      [a, CGI.escapeHTML(b.to_s)]
+    }.to_h
     @data = lookup
   end
 
@@ -23,8 +25,8 @@ class Show
 
   def searchform
     datasrc = []
-    sqlsrc = "select * from pitcher_data where pitcher_data.id = #{@id};"
-    @db.execute(sqlsrc).each do |row|
+    sqlsrc = "select * from pitcher_data where pitcher_data.id = ?;"
+    @db.execute(sqlsrc, @id).each do |row|
       datasrc << row[0, row.size - 1]
     end
     puts <<-HTML
@@ -34,23 +36,23 @@ class Show
       <p>
       選手名検索 <span class="message">(※グラフ)</span>
       <select name="team_pitcher">
-      <option value = ""> -- </opition>
+      <option value=""> -- </opition>
     HTML
 
     datasrc.map { |row| row[1] }.uniq.each do |a|
-      puts "<option value = #{a}>" + CGI.escapeHTML(a.to_s) + '</option>'
+      puts "<option value=#{a}>" + CGI.escapeHTML(a.to_s) + '</option>'
     end
     puts <<-HTML
       </select>
       </p>                                                                                                                                                                                    
       <p>
       球種検索<span class="message">(※グラフ)</span>     
-      <select name ="pitch_type">
-      <option value = ""> -- </opition>
+      <select name="pitch_type">
+      <option value=""> -- </opition>
     HTML
 
     datasrc.map { |row| row[3] }.uniq.each do |t|
-      puts "<option value = #{t}>" + CGI.escapeHTML(t.to_s) + '</option>'
+      puts "<option value=\"#{t}\">" + CGI.escapeHTML(t.to_s) + '</option>'
     end
     puts <<-HTML
       </select>
@@ -60,11 +62,11 @@ class Show
      期間検索
       </p>
       <p>
-      <input type="date" name="day1"> ～　<input type ="date" name ="day2" >
+      <input type="date" name="day1"> ～　<input type="date" name="day2" >
       </p>
 
       <p>
-      <input type="submit" class="btn btn-outline-secondary value="送信"></p>
+      <input type="submit" class="btn btn-outline-secondary" value="検索"></p>
       </p>
 
       </form>
@@ -76,27 +78,32 @@ class Show
 
   def lookup
     data = []
+    sqlargs = [@session['tname']]
     # teams
     sql = 'select * from pitcher_data where pitcher_data.id in ' \
-          "(select id from user where teamname == '#{@session['tname']}')"
+          '(select id from user where teamname == ?)'
     unless @cgi['team_pitcher'].nil? || @cgi['team_pitcher'].empty?
-      sql += " and pitcher_data.pitcher_name = '#{@cgi['team_pitcher']}'"
+      sql += ' and pitcher_data.pitcher_name = ? '
+      sqlargs << @cgi['team_pitcher']
     end
     unless @cgi['pitch_type'].nil? || @cgi['pitch_type'].empty?
-      sql += " and pitcher_data.pitch_type = '#{@cgi['pitch_type']}'"
+      sql += ' and pitcher_data.pitch_type = ? '
+      sqlargs << @cgi['pitch_type']
     end
     unless @cgi['day1'].nil? || @cgi['day1'].empty?
       day1 = @cgi['day1'].delete!('-').to_i
-      sql += " and pitcher_data.day >= #{day1} "
+      sql += ' and pitcher_data.day >= ? '
+      sqlargs << day1
     end
 
     unless @cgi['day2'].nil? || @cgi['day2'].empty?
       day2 = @cgi['day2'].delete!('-').to_i
-      sql += " and pitcher_data.day <= #{day2} "
+      sql += ' and pitcher_data.day <= ? '
+      sqlargs << day2
     end
 
     sql += ';'
-    @db.execute(sql).each do |row|
+    @db.execute(sql, *sqlargs).each do |row|
       data << row[1, row.size - 2]
     end
     data
