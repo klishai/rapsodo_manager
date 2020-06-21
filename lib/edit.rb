@@ -27,10 +27,10 @@ class Edit
       datasrc << row[0, row.size - 1]
     end
     puts <<-EOS
-    <details class="ml-3 mt-2 mb-2">
+    <details class="ml-3 mt-2 mb-2 h5">
       <summary>検索フォーム</summary>
       <form method="get" action="">
-      <p>
+      <p class="mt-3 mb-3 h5">
       選手名検索 <span class="message"></span>
       <select name="team_pitcher">
       <option value = ""> -- </opition>
@@ -42,7 +42,7 @@ class Edit
     puts <<-EOS
      </select>
      </p>                                                                                                                                                                                    
-     <p>
+     <p class=" mb-3 h5">
      球種検索
      <select name ="pitch_type">
      <option value = ""> -- </opition>
@@ -54,14 +54,15 @@ class Edit
     puts <<-EOS
      </select>
      </p>
-     <p>
+     <p class="mb-3 h5">
      期間検索
      </p>
-     <p>
+     <p class=" mb-3 h5">
      <input type="date" name="day1"> ～　<input type ="date" name ="day2" >
      </p>
      <p>
-     <input type="submit" class="btn btn-outline-secondary" value="検索"></p>
+     <input type="submit" class="btn btn-outline-secondary" value="検索">
+     <a class="btn btn-outline-secondary" href="edit.cgi" role="button">条件なしに戻る</a>
      </p>
      </form>
      </details>
