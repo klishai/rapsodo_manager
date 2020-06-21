@@ -46,22 +46,13 @@ class Show
       </select>
       </p>                                                                                                                                                                                    
       <p>
-      球種検索<span class="message">(※グラフ)</span>     
-<<<<<<< HEAD
-      <select name ="pitch_type">
-      <option value = ""> -- </opition>
-    HTML
-
-    datasrc.map { |row| row[3] }.uniq.each do |t|
-      puts "<option value = #{t}>" + CGI.escapeHTML(t.to_s) + '</option>'
-=======
+      球種検索<span class="message">(※グラフ)</span> 
       <select name="pitch_type">
       <option value=""> -- </opition>
     HTML
 
     datasrc.map { |row| row[3] }.uniq.each do |t|
       puts "<option value=\"#{t}\">" + CGI.escapeHTML(t.to_s) + '</option>'
->>>>>>> origin/master
     end
     puts <<-HTML
       </select>
