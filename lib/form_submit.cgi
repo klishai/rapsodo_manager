@@ -5,6 +5,24 @@ require 'cgi'
 require 'cgi/session'
 require 'sqlite3'
 
+def str_integer?(str)
+  begin
+    Integer(str)
+    true
+  rescue ArgumentError
+    false
+  end
+end
+
+def str_float?(str)
+  begin
+    Float(str)
+    true
+  rescue ArgumentError
+    false
+  end
+end
+
 cgi = CGI.new
 session = CGI::Session.new(cgi)
 redirect_flag = false
@@ -43,23 +61,23 @@ else
       redirect_flag = true
       messages << '名前はすべて漢字、カタカナ、ひらがなです'
     end
-    unless cgi['pitch_speed'] =~ /^\d+\.\d+$/
+    unless str_float?(cgi['pitch_speed'])
       redirect_flag = true
       messages << '球速は小数です'
     end
-    unless cgi['rotations'] =~ /^\d+$/
+    unless str_integer?(cgi['rotations'])
       redirect_flag = true
       messages << '回転数は整数です'
     end
-    unless cgi['efficiency'] =~ /^\d+$/
+    unless str_integer?(cgi['efficiency'])
       redirect_flag = true
       messages << '回転効率は整数です'
     end
-    unless cgi['v_change'] =~ /^-?\d+\.\d+$/
+    unless str_float?(cgi['v_change'])
       redirect_flag = true
       messages << '縦の変化量は小数です'
     end
-    unless cgi['h_change'] =~ /^-?\d+\.\d+$/
+    unless str_float?(cgi['h_change'])
       redirect_flag = true
       messages << '横の変化量は小数です'
     end
