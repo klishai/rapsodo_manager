@@ -55,11 +55,11 @@ else
       redirect_flag = true
       messages << '回転効率は整数です'
     end
-    unless cgi['v_change'] =~ /^\d+\.\d+$/
+    unless cgi['v_change'] =~ /^-?\d+\.\d+$/
       redirect_flag = true
       messages << '縦の変化量は小数です'
     end
-    unless cgi['h_change'] =~ /^\d+\.\d+$/
+    unless cgi['h_change'] =~ /^-?\d+\.\d+$/
       redirect_flag = true
       messages << '横の変化量は小数です'
     end
