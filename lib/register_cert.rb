@@ -2,7 +2,6 @@
 
 require 'cgi'
 require 'sqlite3'
-require 'bcrypt'
 
 # 新規名前とパスワードチェック
 # 文字種と重複をみる
@@ -83,7 +82,7 @@ class Register
     team = CGI.escapeHTML(team)
     sql = 'insert into user values(?, ?, ?, ?);'
     @db.execute(sql,
-      @pre_id + 1, name, BCrypt::Password.create(pass).to_s, team
+      @pre_id + 1, name, pass.to_s, team
     ).each do |row|
       data << row
     end
